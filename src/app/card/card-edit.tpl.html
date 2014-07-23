@@ -1,0 +1,43 @@
+<header ng-switch on="!!cardDetails.cardId">
+    <a href="#/cards/{{cardDetails.cardId}}" class="icon icon-back" ng-switch-when="true"></a>
+    <a href="#/cards" class="icon icon-back" ng-switch-default></a>
+
+    <a href="" ng-click="saveCard()" class="icon icon-right icon-save"></a>
+    <div class="header-title header-title-card"></div>
+</header>
+
+<div ng-include="'card/layout/' + cardDetails.layout + '.tpl.html'"></div>
+
+<div class="add-edit-card-holder">
+     <form class="form add-edit-card-form">
+        <input type="hidden" ng-model="cardDetails.cardId">
+
+        <div class="input-holder edit-input-holder">
+            <input type="text" ng-model="cardDetails.cardName" placeholder="First and last name">
+        </div>
+        <div class="input-holder edit-input-holder">
+            <input type="text" ng-model="cardDetails.position" placeholder="Position">
+        </div>
+        <div class="input-holder edit-input-holder">
+            <input type="text" ng-model="cardDetails.phone" placeholder="Phone number">
+        </div>
+        <div class="input-holder edit-input-holder">
+            <input type="emial" ng-model="cardDetails.email" placeholder="Email address">
+        </div>
+        <div class="input-holder edit-input-holder">
+            <input type="text" ng-model="cardDetails.website" placeholder="Website">
+        </div>
+        <div class="input-holder edit-input-holder">
+            <input type="text" ng-model="cardDetails.address1" placeholder="Address line 1">
+        </div>
+        <div class="input-holder edit-input-holder">
+            <input type="text" ng-model="cardDetails.address2" placeholder="Address line 2">
+        </div>
+
+        <div class="input-holder edit-input-holder">
+            <input type="file" ng-image="ngImage" resize-max-height="100" resize-max-width="100" resize-quality="0.7" >
+        </div>
+    </form>
+</div>
+
+

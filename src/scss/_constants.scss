@@ -1,0 +1,139 @@
+// Breakpoints
+$xxhdpi: 1080px;
+$xhdpi: 720px;
+$hdpi: 540px;
+$mdpi: 360px;
+
+$default-border-color: #9b897d;
+$default-font-color: #a99b97;
+
+
+// Mixins
+@mixin border-radius ($radius, $radius-top-left: $radius, $radius-bottom-left: $radius, $radius-bottom-right: $radius ) {
+    -webkit-border-radius: $radius $radius-top-left $radius-bottom-left $radius-bottom-right;
+    -moz-border-radius: $radius $radius-top-left $radius-bottom-left $radius-bottom-right;
+    -ms-border-radius: $radius $radius-top-left $radius-bottom-left $radius-bottom-right;
+    -o-border-radius: $radius $radius-top-left $radius-bottom-left $radius-bottom-right;
+    border-radius: $radius $radius-top-left $radius-bottom-left $radius-bottom-right;
+}
+@mixin gradient ($first-color, $second-color) {
+    background: $first-color;
+    background: -moz-linear-gradient(top,  $first-color 0%, $second-color 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $first-color), color-stop(100%, $second-color));
+    background: -webkit-linear-gradient(top,  $first-color 0%, $second-color 100%); 
+    background: -o-linear-gradient(top,  $first-color 0%, $second-color 100%);
+    background: -ms-linear-gradient(top,  $first-color 0%, $second-color 100%);
+    background: linear-gradient(to bottom,  $first-color 0%, $second-color 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$first-color', endColorstr='$second-color',GradientType=0 );
+}
+@mixin font-size-line-height ($px-size, $ratio: $line-height-golden-ratio) {
+    font-size: $px-size;
+    line-height: $px-size * $ratio;
+}
+@mixin box-shadow ($horisontal, $vertical, $blur, $spread, $color) {
+    -moz-box-shadow:    $horisontal $vertical $blur $spread $color;
+    -webkit-box-shadow: $horisontal $vertical $blur $spread $color;
+    box-shadow:         $horisontal $vertical $blur $spread $color;
+}
+@mixin box-sizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+@mixin image-rules {
+    vertical-align: bottom;
+    width: 100%;
+    height: 100%;
+}
+@mixin grid ($grid-column-width) {
+    @each $grid-element in $grid-elements {
+        .ps-#{$grid-element} {
+            width: $grid-element * $grid-column-width + ($grid-element - 1) * $grid-space-width;
+            margin: 0 $grid-space-width 0 0;
+            float: left;
+            padding: 0;
+        }
+    }
+}
+@mixin transition {
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+
+// Roboto font
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Bold-.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-MediumItalic-webfont.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+$menu-collection: (about, edit, mycard, off, online, user);
+$icon-collection: (add, back, edit, menu, save);

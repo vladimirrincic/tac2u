@@ -3,13 +3,13 @@
  * application routing
  */
 
-angular.module('app', ['ngRoute', 'LocalStorageModule', 'services.constants', 'user', 'card', 'services.message', 'templates.app'])
+angular.module('app', ['ngRoute', 'ngAnimate', 'LocalStorageModule', 'services.constants', 'user', 'card', 'home', 'services.message', 'templates.app'])
 
 .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
         $routeProvider
                 .when('/login', {
-                    templateUrl: 'user/user-sign-in.tpl.html',
-                    controller: 'UserSignInController',
+                    templateUrl: 'user/user-login.tpl.html',
+                    controller: 'UserLoginController',
                     access: {
                         requireLogin: false
                     }
@@ -19,6 +19,13 @@ angular.module('app', ['ngRoute', 'LocalStorageModule', 'services.constants', 'u
                     controller: 'UserSignUpController',
                     access: {
                         requireLogin: false
+                    }
+                })
+                .when('/home', {
+                    templateUrl: 'home/home.tpl.html',
+                    controller: 'homeController',
+                    access: {
+                        requireLogin: true
                     }
                 })
                 .when('/cards', {
@@ -31,6 +38,20 @@ angular.module('app', ['ngRoute', 'LocalStorageModule', 'services.constants', 'u
                 .when('/cards/:cardId', {
                     templateUrl: 'card/card-details.tpl.html',
                     controller: 'CardDetailsController',
+                    access: {
+                        requireLogin: true
+                    }
+                })
+                .when('/edit/:cardId', {
+                    templateUrl: 'card/card-edit.tpl.html',
+                    controller: 'CardEditController',
+                    access: {
+                        requireLogin: true
+                    }
+                })
+                .when('/add', {
+                    templateUrl: 'card/card-edit.tpl.html',
+                    controller: 'CardAddController',
                     access: {
                         requireLogin: true
                     }
@@ -51,13 +72,58 @@ angular.module('app', ['ngRoute', 'LocalStorageModule', 'services.constants', 'u
                 $location.path('/');
                 messageService.addMessage(options.loginNeededMessage);
             } else if(authenticationService.isLogged && nextRoute.originalPath === "/login") {
-                $location.path('/cards');
+                $location.path('/home');
             }
         });
 }])
 
-.controller('AppController', ['$scope', 'options', function($scope, options) {
+.controller('AppController', ['$scope','$window', '$location', 'authenticationService', 'options', function($scope, $window, $location, authenticationService, options) {
+        
         $scope.appInfo = {
             name: options.name
         };
+        
+        $scope.mainMenu = [
+            {
+                url: '#/home',
+                name: 'Vladimir Rincic',
+                class: 'menu-item-user'
+            },
+            {
+                url: '#/create',
+                name: 'Create Business Card',
+                class: 'menu-item-edit'
+            },
+            {
+                url: '#/cards',
+                name: 'My Business Cards',
+                class: 'menu-item-mycard'
+            },
+            {
+                url: '#/online',
+                name: 'Online mode',
+                class: 'menu-item-online'
+            },
+            {
+                url: '#/about',
+                name: 'About',
+                class: 'menu-item-about'
+            }
+        ];
+        
+        $scope.logout = function() {
+            authenticationService.isLogged = false;
+            delete $window.sessionStorage.token;
+            $location.path('/');
+        };
+        
+        $scope.mainMenuAnim = '';
+        $scope.mainMenuToggle = function() {
+            if ($scope.mainMenuAnim !== '') {
+                $scope.mainMenuAnim = '';
+            } else {
+                $scope.mainMenuAnim = 'main-menu-visible';
+            }
+        };
+        
 }]);

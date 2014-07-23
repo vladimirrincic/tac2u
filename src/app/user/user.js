@@ -1,23 +1,18 @@
 angular.module('user', ['services.user'])
 
-.controller('UserController', ['$scope','$window', '$location', 'authenticationService', function($scope, $window, $location, authenticationService) {
-        $scope.signOut = function() {
-            authenticationService.isLogged = false;
-            delete $window.sessionStorage.token;
-            $location.path('/');
-        };
-}])
-
-.controller('UserSignInController', ['$scope', '$location', '$window', 'userService', 'authenticationService', function($scope, $location, $window, userService, authenticationService) {
+.controller('UserLoginController', ['$scope', '$location', '$window', 'userService', 'authenticationService', function($scope, $location, $window, userService, authenticationService) {
         $scope.signIn = function(username, password) {
             userService.signIn(username, password).get().$promise.then(function(response) {
                 authenticationService.isLogged = true;
                 $window.sessionStorage.token = response.token;
-                $location.path("/cards");
+                $location.path("/home");
             }, function(status, data) {
                 console.log(status);
                 console.log(data);
             });
+        };
+        $scope.liConnect = function() {
+            
         };
 }])
 

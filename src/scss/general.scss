@@ -1,3 +1,633 @@
+@import "_constants.scss";
+@import "_animations.scss";
+
+
+
+/** GENERAL STYLES */
+
 body {
-    font: normal 14px Arial;
+    font-family: 'Roboto';
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    color: $default-font-color;
+    overflow: hidden;
+    @media (min-width: $xhdpi) {
+        font-size: 5em;
+        background: url(../img/xxhdpi/background.png) repeat-y;
+        width: $xxhdpi;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        font-size: 3.333em;
+        background: url(../img/xhdpi/background.png) repeat-y;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        font-size: 2.5em;
+        background: url(../img/hdpi/background.png) repeat-y;
+    }
+    @media (max-width: $mdpi) {
+        font-size: 1.667em;
+        background: url(../img/mdpi/background.png) repeat-y;
+    }
+}
+
+a {
+    color: $default-font-color;
+    text-decoration: none;
+}
+
+.form {
+    @include box-sizing;
+    width: 75%;
+    margin: auto;
+    .input-holder {
+        margin-bottom: 0.8em;
+    }
+    input {
+        background: transparent;
+        border: none;
+        border-bottom: solid 0.115em $default-border-color;
+        outline: none;
+        width: 100%;
+        font-family: 'Roboto';
+        font-weight: 300;
+        font-size: 0.65em;
+        color: $default-font-color;
+    }
+}
+
+.btn {
+    @include box-sizing;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.65em;
+    color: $default-font-color;
+    border: solid 0.1em $default-border-color;
+    background: #f8f8f4;
+    padding: 0.5em 1em;
+    text-transform: uppercase;
+}
+
+.btn-full-width {
+    width: 100%;
+}
+.text {
+    font-size: 0.72em
+}
+
+
+
+/** PAPER POCKET */
+
+.paper-pocket {
+    width: 100%;
+    overflow:hidden;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/pocket_paper.png) no-repeat;
+        height: 1403px;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/pocket_paper.png) no-repeat;
+        height: 935px;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/pocket_paper.png) no-repeat;
+        height: 701px;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/pocket_paper.png) no-repeat;
+        height: 467px;
+    }
+}
+
+.paper-pocket-signup {
+    margin-top: 4em;
+}
+
+
+
+
+/** LOGIN STYLES */
+
+.logo-holder {
+    margin: 1.6em auto;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/logo.png) no-repeat;
+        width: 554px;
+        height: 240px;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/logo.png) no-repeat;
+        width: 370px;
+        height: 160px;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/logo.png) no-repeat;
+        width: 278px;
+        height: 120px;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/logo.png) no-repeat;
+        width: 186px;
+        height: 80px;
+    }
+}
+
+.connect-ln {
+    @include box-sizing;
+    display: block;
+    text-decoration: none;
+    margin: 1.5em auto 1em;
+    padding-left: 2.5em;
+    text-transform: uppercase;
+    color: #fff;
+    width: 75%;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/in.png) no-repeat #0f78b4;
+        height: 140px;
+        line-height: 140px;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/in.png) no-repeat #0f78b4;
+        height: 93px;
+        line-height: 93px;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/in.png) no-repeat #0f78b4;
+        height: 70px;
+        line-height: 70px;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/in.png) no-repeat #0f78b4;
+        height: 47px;
+        line-height: 47px;
+    }
+    .connect-ln-text {
+        font-size: 0.53em;
+    }
+}
+
+.login-form {
+    .login-input-holder {
+        
+    }
+    .btn {
+        font-size: 0.65em;
+        padding: 0.5em 1em;
+        width: 47%;
+        &:first-child {
+            margin-right: 3%;
+        }
+    }
+    .forgot-pass-link {
+        text-align: center;
+        a {
+            text-transform: uppercase;
+            font-size: 0.4em;
+        }
+
+    }
+}
+
+.or-holder {
+    font-size: 0.5em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+
+
+/** SIGN UP */
+
+.signup-form {
+    margin-top: 1.4em;
+    .signup-input-holder {
+
+    }
+    .signup-submit-holder {
+        margin: 1.2em 0 0.3em;
+    }
+    .signup-note {
+        text-align: center;
+        font-size: 0.5em;
+        a {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+
+/** HEADER AND MAIN MENU */
+
+header {
+    position: relative;
+    overflow: hidden;
+    z-index: 101;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/header.png) no-repeat;
+        height: 160px;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/header.png) no-repeat;
+        height: 107px;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/header.png) no-repeat;
+        height: 81px;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/header.png) no-repeat;
+        height: 54px;
+    }
+}
+
+.header-title {
+    margin: auto;
+    margin-top: 0.5em;
+    /*    width: 12.5em;
+        height: 1.4em*/
+    @media (min-width: $xhdpi) {
+        width: 500px;
+        height: 56px;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        width: 334px;
+        height: 38px;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        width: 251px;
+        height: 29px;
+    }
+    @media (max-width: $mdpi) {
+        width: 168px;
+        height: 20px;
+    }
+}
+
+.header-title-home {
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/title_transfer.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/title_transfer.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/title_transfer.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/title_transfer.png) no-repeat;
+    }
+}
+
+.header-title-cards {
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/title_my.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/title_my.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/title_my.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/title_my.png) no-repeat;
+    }
+}
+
+.header-title-card {
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/title_edit.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/title_edit.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/title_edit.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/title_edit.png) no-repeat;
+    }
+}
+
+.header-title-signup {
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/title_account.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/title_account.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/title_account.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/title_account.png) no-repeat;
+    }
+}
+
+.icon {
+    display: block;
+    position: absolute;
+    top: 0.34em;
+    left: 0.34em;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-right {
+    left: auto;
+    right: 0.34em;
+}
+
+@each $item in $icon-collection {
+    .icon-#{$item} {
+        @media (min-width: $xhdpi) {
+            background: url("../img/xxhdpi/icon_#{$item}.png") no-repeat;
+        }
+        @media (min-width: $hdpi) and (max-width: $xhdpi) {
+            background: url("../img/xhdpi/icon_#{$item}.png") no-repeat;
+        }
+        @media (min-width: $mdpi) and (max-width: $hdpi) {
+            background: url("../img/hdpi/icon_#{$item}.png") no-repeat;
+        }
+        @media (max-width: $mdpi) {
+            background: url("../img/mdpi/icon_#{$item}.png") no-repeat;
+        }
+    }
+}
+
+.main-menu-container {
+    position:absolute;
+    z-index: 100;
+    top: 1.85em;
+    left: -11em;
+    height: 22.1em;
+    overflow:hidden;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/m_paper.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/m_paper.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/m_paper.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/m_paper.png) no-repeat;
+    }
+}
+
+.main-menu-visible {
+    left: 0;
+}
+
+.main-menu-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 88%;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/m_logo.png) center bottom no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/m_logo.png) center bottom no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/m_logo.png) center bottom no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/m_logo.png) center bottom no-repeat;
+    }
+    li {
+        margin: 0;
+        padding: 0;
+        a {
+            @include box-sizing;
+            display: block;
+            font-size: 0.8em;
+            line-height: 2.9em;
+            border-bottom: solid 1px #ddd;
+            padding: 0 1em 0 3em;
+            background-position: 0.9em center;
+            background-repeat: no-repeat;
+        }
+
+        @each $item in $menu-collection {
+            .menu-item-#{$item} {
+                @media (min-width: $xhdpi) {
+                    background-image: url("../img/xxhdpi/m_icon_#{$item}.png");
+                }
+                @media (min-width: $hdpi) and (max-width: $xhdpi) {
+                    background-image: url("../img/xhdpi/m_icon_#{$item}.png");
+                }
+                @media (min-width: $mdpi) and (max-width: $hdpi) {
+                    background-image: url("../img/hdpi/m_icon_#{$item}.png");
+                }
+                @media (max-width: $mdpi) {
+                    background-image: url("../img/mdpi/m_icon_#{$item}.png");
+                }
+            }
+        }
+
+    }
+}
+
+
+
+/** MAIN CONTENT */
+
+.home-bc {
+    display: block;
+}
+
+.home-create-bc {
+    margin-top: 1.1em;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/tm_card.png) no-repeat;
+        width: $xxhdpi;
+        height: 695px;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/tm_card.png) no-repeat;
+        width: $xhdpi;
+        height: 522px;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/tm_card.png) no-repeat;
+        width: $hdpi;
+        height: 391px;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/tm_card.png) no-repeat;
+        width: $mdpi;
+        height: 260px;
+    }
+}
+
+.home-my-bc {
+    margin-top: 0.6em;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/my_card.png) no-repeat;
+        width: $xxhdpi;
+        height: 695px;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/my_card.png) no-repeat;
+        width: $xhdpi;
+        height: 522px;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/my_card.png) no-repeat;
+        width: $hdpi;
+        height: 391px;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/my_card.png) no-repeat;
+        width: $mdpi;
+        height: 260px;
+    }
+}
+
+
+/** CARD LIST AND LAYOUT */
+
+.card-list {
+    margin: 0;
+    padding: 0;
+    padding-top: 1.5em;
+    text-align: center;
+    li {
+        position: relative;
+        list-style: none;
+        margin-bottom: 1.5em;
+        text-align: center;
+
+        &:after {
+            content: '';
+            @media (min-width: $xhdpi) {
+                background: url(../img/xxhdpi/pocket.png) no-repeat;
+                width: $xxhdpi;
+            }
+            @media (min-width: $hdpi) and (max-width: $xhdpi) {
+                background: url(../img/xhdpi/pocket.png) no-repeat;
+                width: $xhdpi;
+            }
+            @media (min-width: $mdpi) and (max-width: $hdpi) {
+                background: url(../img/hdpi/pocket.png) no-repeat;
+                width: $hdpi;
+            }
+            @media (max-width: $mdpi) {
+                background: url(../img/mdpi/pocket.png) no-repeat;
+                width: $mdpi;
+            }
+            height: 3.0375em;
+            position: absolute;
+            bottom: -2.9em;
+            left: 0;
+        }
+    }
+}
+
+.empty-card-list {
+    text-align: center;
+    margin: 2em auto;
+    width: 12.375em;
+    height: 12.25em;
+    overflow:hidden;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/paper_empty.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/paper_empty.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/paper_empty.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/paper_empty.png) no-repeat;
+    }
+    .text {
+        padding: 2em 1.7em 2.5em;
+    }
+}
+
+.card-layout-in-list {
+    width: 12em;
+    height: 5em;
+    display: inline-block;
+}
+
+.card-layout {
+    width: 12em;
+    height: 6.62em;
+    display: inline-block;
+}
+
+@for $i from 1 through 4 {
+    .card-layout-#{$i} {
+        @media (min-width: $xhdpi) {
+            background: url("../img/xxhdpi/card#{$i}.png") no-repeat;
+        }
+        @media (min-width: $hdpi) and (max-width: $xhdpi) {
+            background: url("../img/xhdpi/card#{$i}.png") no-repeat;
+        }
+        @media (min-width: $mdpi) and (max-width: $hdpi) {
+            background: url("../img/hdpi/card#{$i}.png") no-repeat;
+        }
+        @media (max-width: $mdpi) {
+            background: url("../img/mdpi/card#{$i}.png") no-repeat;
+        }
+    }
+}
+
+.card-layout-2 {
+    text-align: center;
+    .full-name {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 0.95em;
+    }
+    .logo {
+        
+    }
+    .occupation {
+        font-size: 0.7em;
+    }
+    .contact-details {
+        font-size: 0.5em;
+    }
+}
+
+
+
+/** ADD OR EDIT CARD */
+
+.add-edit-card-holder {
+    height: 22.0125em;
+    @media (min-width: $xhdpi) {
+        background: url("../img/xxhdpi/pocket_paper_edit.png") no-repeat;
+        width: $xxhdpi;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url("../img/xhdpi/pocket_paper_edit.png") no-repeat;
+        width: $xhdpi;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url("../img/hdpi/pocket_paper_edit.png") no-repeat;
+        width: $hdpi;
+    }
+    @media (max-width: $mdpi) {
+        background: url("../img/mdpi/pocket_paper_edit.png") no-repeat;
+        width: $mdpi;
+    }
+}
+.add-edit-card-form {
+    padding-top: 1.7em;
+}
+.card-edit-preview {
+    text-align: center;
+    padding: 0.485em 0;
 }

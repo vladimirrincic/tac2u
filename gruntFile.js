@@ -58,7 +58,8 @@ module.exports = function(grunt) {
                 }
             },
             angular: {
-                src: ['vendor/angular/angular.min.js', 'vendor/angular/angular-route.js', 'vendor/angular/angular-resource.js', 'vendor/angular/angular-local-storage.js'],
+                src: ['vendor/angular/angular.min.js', 'vendor/angular/angular-route.js', 'vendor/angular/angular-resource.js', 'vendor/angular/angular-local-storage.js',
+                'vendor/angular/angular-animate.js'],
                 dest: '<%= distdir %>/angular.js'
             }
         },

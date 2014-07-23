@@ -1,5 +1,24 @@
-<ul>
-    <li ng-repeat="card in cardList">
-        <a ng-href="#/cards/{{card.cardId}}">{{card.cardName}}</a>
-    </li>
-</ul>
+<header>
+    <a href="#/home" class="icon icon-back"></a>
+    <a href="#/add" class="icon icon-right icon-add"></a>
+    <div class="header-title header-title-cards"></div>
+</header>
+
+<div ng-switch on="cardListEmpty">
+
+    <div class="empty-card-list" ng-switch-when="true">
+        <div class="text">
+            You don't have Business Cards. Please tap "ADD CARD" button below to add your first Business Card.
+        </div>
+        <div class="btn">Add card</div>
+    </div>
+    
+    <ul class="card-list" ng-switch-default>
+        <li ng-repeat="card in cardList">
+            <a ng-href="#/cards/{{card.cardId}}" class="card-layout-in-list {{card.layout}}">
+                {{card.fullName}}
+            </a>
+        </li>
+    </ul>
+    
+</div>

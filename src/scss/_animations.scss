@@ -1,0 +1,26 @@
+/*.ng-enter, .ng-leave {
+    -webkit-transition:all 0.2s;
+    transition:all 0.2s;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.ng-enter {
+    z-index: 8888;
+}
+.ng-leave {
+    z-index: 9999;
+}
+
+.ng-enter {
+    left:100%;
+}
+.ng-enter.ng-enter-active {
+    left:0;
+}
+.ng-leave.ng-leave-active {
+    left:-100%;
+}*/

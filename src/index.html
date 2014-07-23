@@ -11,13 +11,19 @@
         <script src="tac2u.js"></script>
     </head>
     <body ng-controller="AppController">
-        <header ng-controller="UserController">
-            Welcome to {{appInfo.name}}
-            <a href="javascript:void(0)" ng-click="signOut()">Sign Out</a>
-        </header>
+
+        <div class="main-menu-container" ng-class="mainMenuAnim">
+            <ul>
+                <li ng-repeat="menuItem in mainMenu">
+                    <a ng-href="{{menuItem.url}}" class="{{menuItem.class}}">{{menuItem.name}}</a>
+                </li>
+                <li>
+                    <a ng-href="#" class="menu-item-off" ng-click="logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+
         <div ng-view class="main-content"></div>
-        <footer>
-            
-        </footer>
+
     </body>
 </html>
