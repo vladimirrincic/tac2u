@@ -19,9 +19,24 @@ angular.module('card', ['services.card', 'directives'])
 
 }])
 
-.controller('CardDetailsController', ['$scope', '$routeParams', 'cardService', function($scope, $routeParams, cardService) {
+.controller('CardDetailsController', ['$scope', '$routeParams', '$window', 'cardService', 'options', function($scope, $routeParams, $window, cardService, options) {
+        var qrCodeSize = options.qrCodeSize, windowWidth = $window.innerWidth;
+        
+        if (windowWidth > 720) {
+            qrCodeSize *= 3;
+        } else if (windowWidth > 540) {
+            qrCodeSize *= 2;
+        } else if (windowWidth > 360) {
+            qrCodeSize *= 1.5;
+        }
         
         $scope.cardDetails = cardService.getCardById($routeParams.cardId);
+        $scope.vCard = {
+            string: cardService.vCardGenerator($routeParams.cardId),
+            size: qrCodeSize,
+            version: options.qrCodeVersion,
+            errorCorrection: options.errorCorrection
+        };
 
 }])
 
@@ -31,7 +46,7 @@ angular.module('card', ['services.card', 'directives'])
 
         $scope.$watch('ngImage', function(newValue) {
             if(newValue) {
-                $scope.cardDetails.image = newValue.resized.dataURL;
+                $scope.cardDetails.logo = newValue.resized.dataURL;
             }
         });
 
@@ -40,13 +55,32 @@ angular.module('card', ['services.card', 'directives'])
         };
 }])
 
-.controller('CardAddController', ['$scope', 'cardService', function($scope, cardService) {
+.controller('CardTemplatesController', ['$scope', function($scope) {
+        $scope.cardLayoutList = [
+            {
+                layoutId: 1
+            },
+            {
+                layoutId: 2
+            },
+            {
+                layoutId: 3
+            },
+            {
+                layoutId: 4
+            }
+        ];
+}])
+
+.controller('CardAddController', ['$scope', '$routeParams', 'cardService', function($scope, $routeParams, cardService) {
         
-        $scope.cardDetails = {};
+        $scope.cardDetails = {
+            layoutId: $routeParams.layoutId
+        };
 
         $scope.$watch('ngImage', function(newValue) {
-            if(newValue) {
-                $scope.cardDetails.image = newValue.resized.dataURL;
+            if (newValue) {
+                $scope.cardDetails.logo = newValue.resized.dataURL;
             }
         });
 

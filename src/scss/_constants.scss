@@ -1,8 +1,8 @@
 // Breakpoints
-$xxhdpi: 1080px;
-$xhdpi: 720px;
-$hdpi: 540px;
 $mdpi: 360px;
+$hdpi: 1.5 * $mdpi; // 540px
+$xhdpi: 2 * $mdpi; // 720px
+$xxhdpi: 3 * $mdpi; // 1080px
 
 $default-border-color: #9b897d;
 $default-font-color: #a99b97;

@@ -27,6 +27,6 @@ angular.module('user', ['services.user'])
         };
 }])
 
-.controller('UserEditController', ['$scope', function($scope) {
+.controller('UserForgotPassword', ['$scope', function($scope) {
         
 }]);

@@ -59,8 +59,12 @@ module.exports = function(grunt) {
             },
             angular: {
                 src: ['vendor/angular/angular.min.js', 'vendor/angular/angular-route.js', 'vendor/angular/angular-resource.js', 'vendor/angular/angular-local-storage.js',
-                'vendor/angular/angular-animate.js'],
+                'vendor/angular/angular-animate.js', 'vendor/angular/angular-qrcode.js', 'vendor/angular/angular-touch.js'],
                 dest: '<%= distdir %>/angular.js'
+            },
+            thirdparty: {
+                src: ['vendor/QR/qrcode.js'],
+                dest: '<%= distdir %>/thirdparty.js'
             }
         },
         sass: {

@@ -1,6 +1,8 @@
 <div class="card-edit-preview">
-    <div class="card-layout {{cardDetails.layout}}">
-        <!--<img ng-src="{{cardDetails.logo}}">-->
+    <div class="card-layout card-layout-{{cardDetails.layoutId}}">
+        <div class="logo">
+            <img ng-src="{{cardDetails.logo}}">
+        </div>
         <div class="full-name">
             {{cardDetails.fullName}}
         </div>
@@ -8,9 +10,9 @@
             {{cardDetails.occupation}}
         </div>
         <div class="contact-details">
-            {{cardDetails.email}} |
             {{cardDetails.phone}} |
-            {{cardDetails.website}} |
+            {{cardDetails.email}} |
+            {{cardDetails.website}}<br> |
             {{cardDetails.address1}} |
             {{cardDetails.address2}}
         </div>

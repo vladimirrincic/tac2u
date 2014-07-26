@@ -6,17 +6,17 @@
     <div class="header-title header-title-card"></div>
 </header>
 
-<div ng-include="'card/layout/' + cardDetails.layout + '.tpl.html'"></div>
+<div ng-include="'card/layout/card-layout-' + cardDetails.layoutId + '.tpl.html'"></div>
 
 <div class="add-edit-card-holder">
      <form class="form add-edit-card-form">
         <input type="hidden" ng-model="cardDetails.cardId">
 
         <div class="input-holder edit-input-holder">
-            <input type="text" ng-model="cardDetails.cardName" placeholder="First and last name">
+            <input type="text" ng-model="cardDetails.fullName" placeholder="First and last name">
         </div>
         <div class="input-holder edit-input-holder">
-            <input type="text" ng-model="cardDetails.position" placeholder="Position">
+            <input type="text" ng-model="cardDetails.occupation" placeholder="Position">
         </div>
         <div class="input-holder edit-input-holder">
             <input type="text" ng-model="cardDetails.phone" placeholder="Phone number">
@@ -35,7 +35,7 @@
         </div>
 
         <div class="input-holder edit-input-holder">
-            <input type="file" ng-image="ngImage" resize-max-height="100" resize-max-width="100" resize-quality="0.7" >
+            <input type="file" ng-image="ngImage" resize-max-height="500" resize-max-width="500" resize-quality="0.7" >
         </div>
     </form>
 </div>

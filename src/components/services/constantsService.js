@@ -7,5 +7,10 @@ angular.module('services.constants', [])
         'baseUrl': 'json',
         
         // Messages
-        'loginNeededMessage': 'You need to login!'
+        'loginNeededMessage': 'You need to login!',
+        
+        // QR code
+        'qrCodeSize': 115,
+        'qrCodeVersion': 7,
+        'errorCorrection': 'L'
 });

@@ -9,13 +9,16 @@
         <script src="angular.js"></script>
         <script src="templates/app.js"></script>
         <script src="tac2u.js"></script>
+        <script src="thirdparty.js"></script>
     </head>
     <body ng-controller="AppController">
 
-        <div class="main-menu-container" ng-class="mainMenuAnim">
+        <!-- MAIN MENU -->
+        <div class="overlay transparent-overlay" ng-class="{'show-overlay':showmenu}" ng-swipe-left="showmenu=false" ng-click="toggleMenu()"></div>
+        <div class="main-menu-container" ng-class="{mainMenuVisible:showmenu}">
             <ul>
                 <li ng-repeat="menuItem in mainMenu">
-                    <a ng-href="{{menuItem.url}}" class="{{menuItem.class}}">{{menuItem.name}}</a>
+                    <a ng-href="{{menuItem.url}}" class="{{menuItem.class}}" ng-click="toggleMenu()">{{menuItem.name}}</a>
                 </li>
                 <li>
                     <a ng-href="#" class="menu-item-off" ng-click="logout()">Logout</a>
@@ -23,6 +26,7 @@
             </ul>
         </div>
 
+        <!-- MAIN VIEW -->
         <div ng-view class="main-content"></div>
 
     </body>

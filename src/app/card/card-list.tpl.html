@@ -1,6 +1,6 @@
 <header>
     <a href="#/home" class="icon icon-back"></a>
-    <a href="#/add" class="icon icon-right icon-add"></a>
+    <a href="#/card-templates" class="icon icon-right icon-add"></a>
     <div class="header-title header-title-cards"></div>
 </header>
 
@@ -14,9 +14,9 @@
     </div>
     
     <ul class="card-list" ng-switch-default>
-        <li ng-repeat="card in cardList">
-            <a ng-href="#/cards/{{card.cardId}}" class="card-layout-in-list {{card.layout}}">
-                {{card.fullName}}
+        <li ng-repeat="cardDetails in cardList">
+            <a ng-href="#/cards/{{cardDetails.cardId}}" class="card-layout-in-list">
+                <div ng-include="'card/layout/card-layout-' + cardDetails.layoutId + '.tpl.html'"></div>
             </a>
         </li>
     </ul>

@@ -4,4 +4,21 @@
     <div class="header-title header-title-card"></div>
 </header>
 
-<div ng-include="'card/layout/' + cardDetails.layout + '.tpl.html'"></div>
+<div ng-include="'card/layout/card-layout-' + cardDetails.layoutId + '.tpl.html'"></div>
+
+<div class="share-card-holder">
+    <div class="qr-code">
+        <qrcode data="{{vCard.string}}" size="{{vCard.size}}" version="{{vCard.version}}" error-correction-level="{{vCard.errorCorrection}}"></qrcode>
+    </div>
+    <div class="separator-send">
+        Send via email
+    </div>
+    <form class="form share-email">
+        <div class="input-holder share-email-input-holder">
+            <input type="email" class="form-control" id="inputEmail" placeholder="EMAIL">
+        </div>
+        <div class="input-holder share-email-submit-holder">
+            <a type="submit" class="btn btn-full-width" ng-click="">Send</a>
+        </div>
+    </form>
+</div>

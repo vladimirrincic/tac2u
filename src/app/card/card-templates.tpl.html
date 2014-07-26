@@ -1,0 +1,14 @@
+<header>
+    <a href="#/home" class="icon icon-back"></a>
+    <div class="header-title header-title-create"></div>
+</header>
+
+<ul class="card-list">
+    <li ng-repeat="cardLayout in cardLayoutList">
+            <a ng-href="#/add/{{cardLayout.layoutId}}" class="card-layout-in-list">
+                <div class="card-edit-preview">
+                    <div class="card-layout card-layout-{{cardLayout.layoutId}}"></div>
+                </div>
+            </a>
+    </li>
+</ul>

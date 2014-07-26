@@ -3,7 +3,7 @@
  * application routing
  */
 
-angular.module('app', ['ngRoute', 'ngAnimate', 'LocalStorageModule', 'services.constants', 'user', 'card', 'home', 'services.message', 'templates.app'])
+angular.module('app', ['ngRoute', 'ngAnimate', 'ngTouch', 'LocalStorageModule', 'services.constants', 'user', 'card', 'home', 'services.message', 'monospaced.qrcode', 'templates.app'])
 
 .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
         $routeProvider
@@ -17,6 +17,13 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'LocalStorageModule', 'services.c
                 .when('/signup', {
                     templateUrl: 'user/user-sign-up.tpl.html',
                     controller: 'UserSignUpController',
+                    access: {
+                        requireLogin: false
+                    }
+                })
+                .when('/forgot-password', {
+                    templateUrl: 'user/user-forgot-password.tpl.html',
+                    controller: 'UserForgotPassword',
                     access: {
                         requireLogin: false
                     }
@@ -49,7 +56,14 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'LocalStorageModule', 'services.c
                         requireLogin: true
                     }
                 })
-                .when('/add', {
+                .when('/card-templates', {
+                    templateUrl: 'card/card-templates.tpl.html',
+                    controller: 'CardTemplatesController',
+                    access: {
+                        requireLogin: true
+                    }
+                })
+                .when('/add/:layoutId', {
                     templateUrl: 'card/card-edit.tpl.html',
                     controller: 'CardAddController',
                     access: {
@@ -90,7 +104,7 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'LocalStorageModule', 'services.c
                 class: 'menu-item-user'
             },
             {
-                url: '#/create',
+                url: '#/card-templates',
                 name: 'Create Business Card',
                 class: 'menu-item-edit'
             },
@@ -115,15 +129,12 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'LocalStorageModule', 'services.c
             authenticationService.isLogged = false;
             delete $window.sessionStorage.token;
             $location.path('/');
+            $scope.toggleMenu();
         };
-        
-        $scope.mainMenuAnim = '';
-        $scope.mainMenuToggle = function() {
-            if ($scope.mainMenuAnim !== '') {
-                $scope.mainMenuAnim = '';
-            } else {
-                $scope.mainMenuAnim = 'main-menu-visible';
-            }
+
+        $scope.showmenu = false;
+        $scope.toggleMenu = function() {
+            $scope.showmenu = ($scope.showmenu) ? false : true;
         };
-        
+             
 }]);

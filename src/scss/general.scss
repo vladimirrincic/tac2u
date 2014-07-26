@@ -13,16 +13,16 @@ body {
     color: $default-font-color;
     overflow: hidden;
     @media (min-width: $xhdpi) {
-        font-size: 5em;
+        font-size: 5.001em;
         background: url(../img/xxhdpi/background.png) repeat-y;
         width: $xxhdpi;
     }
     @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        font-size: 3.333em;
+        font-size: 3.334em;
         background: url(../img/xhdpi/background.png) repeat-y;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
-        font-size: 2.5em;
+        font-size: 2.5005em;
         background: url(../img/hdpi/background.png) repeat-y;
     }
     @media (max-width: $mdpi) {
@@ -65,7 +65,7 @@ a {
     color: $default-font-color;
     border: solid 0.1em $default-border-color;
     background: #f8f8f4;
-    padding: 0.5em 1em;
+    padding: 0.6em 1em;
     text-transform: uppercase;
 }
 
@@ -83,6 +83,7 @@ a {
 .paper-pocket {
     width: 100%;
     overflow:hidden;
+    margin-top: 4em;
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/pocket_paper.png) no-repeat;
         height: 1403px;
@@ -101,15 +102,14 @@ a {
     }
 }
 
-.paper-pocket-signup {
-    margin-top: 4em;
-}
-
 
 
 
 /** LOGIN STYLES */
 
+.paper-pocket-login {
+    margin-top: 0;
+}
 .logo-holder {
     margin: 1.6em auto;
     @media (min-width: $xhdpi) {
@@ -138,7 +138,7 @@ a {
     @include box-sizing;
     display: block;
     text-decoration: none;
-    margin: 1.5em auto 1em;
+    margin: 1.7em auto 1em;
     padding-left: 2.5em;
     text-transform: uppercase;
     color: #fff;
@@ -169,8 +169,11 @@ a {
 }
 
 .login-form {
-    .login-input-holder {
-        
+    .login-input-holder:nth-child(2) {
+        margin-bottom: 1.5em;
+    }
+    .login-submit-holder {
+        margin-bottom: 0.3em;
     }
     .btn {
         font-size: 0.65em;
@@ -184,16 +187,28 @@ a {
         text-align: center;
         a {
             text-transform: uppercase;
-            font-size: 0.4em;
+            font-size: 0.46em;
         }
 
     }
 }
 
-.or-holder {
-    font-size: 0.5em;
+.separator-holder {
     text-align: center;
     margin-bottom: 1em;
+    font-size: 0.5em;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/separator-or.png) no-repeat center;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/separator-or.png) no-repeat center;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/xhdpi/separator-or.png) no-repeat center;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/separator-or.png) no-repeat center;
+    }
 }
 
 
@@ -217,6 +232,21 @@ a {
     }
 }
 
+
+
+/** FORGOT PASSWORD */
+
+.forgot-password-form {
+    padding-top: 2.5em;
+    .text {
+        font-size: 0.5em;
+        text-align: center;
+    }
+    .forgot-password-input-holder {
+        padding: 1.7em 0;
+    }
+}
+    
 
 
 /** HEADER AND MAIN MENU */
@@ -296,7 +326,7 @@ header {
     }
 }
 
-.header-title-card {
+.header-title-edit {
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/title_edit.png) no-repeat;
     }
@@ -308,6 +338,21 @@ header {
     }
     @media (max-width: $mdpi) {
         background: url(../img/mdpi/title_edit.png) no-repeat;
+    }
+}
+
+.header-title-card {
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/title_my.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/title_my.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/title_my.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/title_my.png) no-repeat;
     }
 }
 
@@ -323,6 +368,36 @@ header {
     }
     @media (max-width: $mdpi) {
         background: url(../img/mdpi/title_account.png) no-repeat;
+    }
+}
+
+.header-title-create {
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/title_create.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/title_create.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/title_create.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/title_create.png) no-repeat;
+    }
+}
+
+.header-title-forgot-password {
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/title_password.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/title_password.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/title_password.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/title_password.png) no-repeat;
     }
 }
 
@@ -380,7 +455,7 @@ header {
     }
 }
 
-.main-menu-visible {
+.mainMenuVisible {
     left: 0;
 }
 
@@ -433,6 +508,22 @@ header {
         }
 
     }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    display: none;
+}
+.overlay-transparent {
+    background-color: rgba(0,0,0,0.5);
+}
+.show-overlay {
+    display: block;
 }
 
 
@@ -497,12 +588,12 @@ header {
 .card-list {
     margin: 0;
     padding: 0;
-    padding-top: 1.5em;
+    padding-top: 1.25em;
     text-align: center;
     li {
         position: relative;
         list-style: none;
-        margin-bottom: 1.5em;
+        margin-bottom: 1em;
         text-align: center;
 
         &:after {
@@ -525,7 +616,7 @@ header {
             }
             height: 3.0375em;
             position: absolute;
-            bottom: -2.9em;
+            bottom: -2.64em;
             left: 0;
         }
     }
@@ -556,14 +647,39 @@ header {
 
 .card-layout-in-list {
     width: 12em;
-    height: 5em;
+    height: 5.2em;
     display: inline-block;
+    overflow: hidden;
 }
 
 .card-layout {
     width: 12em;
     height: 6.62em;
     display: inline-block;
+    text-align: center;
+    .logo {
+        height: 2.143em;
+        padding: 0.3em 0.5em;
+        img {
+            height: 100%;
+            vertical-align: bottom;
+        }
+    }
+    .full-name {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 0.75em;
+    }
+    .occupation {
+        font-size: 0.45em;
+        line-height: 0.95em;
+        margin-bottom: 1em;
+        color: #289ba7;
+    }
+    .contact-details {
+        font-size: 0.4em;
+        line-height: 1.75em;
+    }
 }
 
 @for $i from 1 through 4 {
@@ -584,23 +700,10 @@ header {
 }
 
 .card-layout-2 {
-    text-align: center;
     .full-name {
-        text-transform: uppercase;
-        font-weight: 500;
-        font-size: 0.95em;
-    }
-    .logo {
-        
-    }
-    .occupation {
-        font-size: 0.7em;
-    }
-    .contact-details {
-        font-size: 0.5em;
+        color: #5b5b5b;
     }
 }
-
 
 
 /** ADD OR EDIT CARD */
@@ -630,4 +733,53 @@ header {
 .card-edit-preview {
     text-align: center;
     padding: 0.485em 0;
+}
+
+
+
+/** CARD SHARE */
+
+.share-card-holder {
+    @include box-sizing;
+    height: 14em;
+    @media (min-width: $xhdpi) {
+        background: url("../img/xxhdpi/pocket_paper_preview.png") no-repeat;
+        width: $xxhdpi;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url("../img/xhdpi/pocket_paper_preview.png") no-repeat;
+        width: $xhdpi;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url("../img/hdpi/pocket_paper_preview.png") no-repeat;
+        width: $hdpi;
+    }
+    @media (max-width: $mdpi) {
+        background: url("../img/mdpi/pocket_paper_preview.png") no-repeat;
+        width: $mdpi;
+    }
+}
+.qr-code {
+    text-align: center;
+    padding: 1.2em 0 0.5em;
+}
+.separator-send {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 0.5em;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/separator_send.png) no-repeat center;
+    }
+    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/separator_send.png) no-repeat center;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/xhdpi/separator_send.png) no-repeat center;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/separator_send.png) no-repeat center;
+    }
+}
+.form .share-email-input-holder {
+    margin-bottom: 0.4em;
 }
