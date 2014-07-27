@@ -3,7 +3,7 @@
     <a href="#/cards" class="icon icon-back" ng-switch-default></a>
 
     <a href="" ng-click="saveCard()" class="icon icon-right icon-save"></a>
-    <div class="header-title header-title-card"></div>
+    <div class="header-title header-title-edit"></div>
 </header>
 
 <div ng-include="'card/layout/card-layout-' + cardDetails.layoutId + '.tpl.html'"></div>
@@ -22,7 +22,7 @@
             <input type="text" ng-model="cardDetails.phone" placeholder="Phone number">
         </div>
         <div class="input-holder edit-input-holder">
-            <input type="emial" ng-model="cardDetails.email" placeholder="Email address">
+            <input type="email" ng-model="cardDetails.email" placeholder="Email address">
         </div>
         <div class="input-holder edit-input-holder">
             <input type="text" ng-model="cardDetails.website" placeholder="Website">

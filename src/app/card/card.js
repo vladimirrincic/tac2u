@@ -23,11 +23,13 @@ angular.module('card', ['services.card', 'directives'])
         var qrCodeSize = options.qrCodeSize, windowWidth = $window.innerWidth;
         
         if (windowWidth > 720) {
-            qrCodeSize *= 3;
+            qrCodeSize *= 3; // xxhdpi
+        } else if (windowWidth > 640) {
+            qrCodeSize *= 2; // xhdpi
         } else if (windowWidth > 540) {
-            qrCodeSize *= 2;
+            qrCodeSize *= 1.65; // Retina
         } else if (windowWidth > 360) {
-            qrCodeSize *= 1.5;
+            qrCodeSize *= 1.5; // hdpi
         }
         
         $scope.cardDetails = cardService.getCardById($routeParams.cardId);

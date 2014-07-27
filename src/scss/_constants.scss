@@ -4,6 +4,8 @@ $hdpi: 1.5 * $mdpi; // 540px
 $xhdpi: 2 * $mdpi; // 720px
 $xxhdpi: 3 * $mdpi; // 1080px
 
+$retina: 640px;
+
 $default-border-color: #9b897d;
 $default-font-color: #a99b97;
 
@@ -137,3 +139,4 @@ $default-font-color: #a99b97;
 
 $menu-collection: (about, edit, mycard, off, online, user);
 $icon-collection: (add, back, edit, menu, save);
+$header-title-collection: (home, cards, card, edit, account, create, forgot_password);

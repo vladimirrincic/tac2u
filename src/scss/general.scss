@@ -11,15 +11,18 @@ body {
     margin: 0;
     padding: 0;
     color: $default-font-color;
-    overflow: hidden;
+/*    overflow: hidden;*/ 
     @media (min-width: $xhdpi) {
         font-size: 5.001em;
         background: url(../img/xxhdpi/background.png) repeat-y;
-        width: $xxhdpi;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         font-size: 3.334em;
         background: url(../img/xhdpi/background.png) repeat-y;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        font-size: 2.963555555555556em;
+        background: url(../img/retina/background.png) repeat-y;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
         font-size: 2.5005em;
@@ -72,33 +75,34 @@ a {
 .btn-full-width {
     width: 100%;
 }
+
 .text {
     font-size: 0.72em
 }
 
-
-
-/** PAPER POCKET */
+.main-content {
+    padding-top: 2em;
+}
 
 .paper-pocket {
     width: 100%;
     overflow:hidden;
     margin-top: 4em;
+    height: 17.4em;
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/pocket_paper.png) no-repeat;
-        height: 1403px;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         background: url(../img/xhdpi/pocket_paper.png) no-repeat;
-        height: 935px;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/pocket_paper.png) no-repeat;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
         background: url(../img/hdpi/pocket_paper.png) no-repeat;
-        height: 701px;
     }
     @media (max-width: $mdpi) {
         background: url(../img/mdpi/pocket_paper.png) no-repeat;
-        height: 467px;
     }
 }
 
@@ -112,25 +116,22 @@ a {
 }
 .logo-holder {
     margin: 1.6em auto;
+    width: 6.925em;
+    height: 3em;
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/logo.png) no-repeat;
-        width: 554px;
-        height: 240px;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         background: url(../img/xhdpi/logo.png) no-repeat;
-        width: 370px;
-        height: 160px;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/logo.png) no-repeat;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
         background: url(../img/hdpi/logo.png) no-repeat;
-        width: 278px;
-        height: 120px;
     }
     @media (max-width: $mdpi) {
         background: url(../img/mdpi/logo.png) no-repeat;
-        width: 186px;
-        height: 80px;
     }
 }
 
@@ -143,25 +144,22 @@ a {
     text-transform: uppercase;
     color: #fff;
     width: 75%;
+    height: 1.75em;
+    line-height: 1.75em;
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/in.png) no-repeat #0f78b4;
-        height: 140px;
-        line-height: 140px;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         background: url(../img/xhdpi/in.png) no-repeat #0f78b4;
-        height: 93px;
-        line-height: 93px;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/in.png) no-repeat #0f78b4;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
         background: url(../img/hdpi/in.png) no-repeat #0f78b4;
-        height: 70px;
-        line-height: 70px;
     }
     @media (max-width: $mdpi) {
         background: url(../img/mdpi/in.png) no-repeat #0f78b4;
-        height: 47px;
-        line-height: 47px;
     }
     .connect-ln-text {
         font-size: 0.53em;
@@ -200,8 +198,11 @@ a {
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/separator-or.png) no-repeat center;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         background: url(../img/xhdpi/separator-or.png) no-repeat center;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/separator-or.png) no-repeat center;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
         background: url(../img/xhdpi/separator-or.png) no-repeat center;
@@ -209,6 +210,199 @@ a {
     @media (max-width: $mdpi) {
         background: url(../img/mdpi/separator-or.png) no-repeat center;
     }
+}
+
+
+
+/** HEADER AND MAIN MENU */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 101;
+    height: 2em;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/header.png) no-repeat;
+    }
+    @media (min-width: $retina) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/header.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/header.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/header.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/header.png) no-repeat;
+    }
+}
+
+.header-title {
+    margin: auto;
+    margin-top: 0.5em;
+    width: 6.25em;
+    height: 0.7em
+}
+
+@each $item in $header-title-collection {
+    .header-title-#{$item} {
+        @media (min-width: $xhdpi) {
+            background: url("../img/xxhdpi/title_#{$item}.png") no-repeat;
+        }
+        @media (min-width: $retina) and (max-width: $xhdpi) {
+            background: url("../img/xhdpi/title_#{$item}.png") no-repeat;
+        }
+        @media (min-width: $hdpi) and (max-width: $retina) {
+            background: url("../img/retina/title_#{$item}.png") no-repeat;
+        }
+        @media (min-width: $mdpi) and (max-width: $hdpi) {
+            background: url("../img/hdpi/title_#{$item}.png") no-repeat;
+        }
+        @media (max-width: $mdpi) {
+            background: url("../img/mdpi/title_#{$item}.png") no-repeat;
+        }
+    }
+}
+
+.icon {
+    display: block;
+    position: absolute;
+    top: 0.34em;
+    left: 0.34em;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-right {
+    left: auto;
+    right: 0.34em;
+}
+
+@each $item in $icon-collection {
+    .icon-#{$item} {
+        @media (min-width: $xhdpi) {
+            background: url("../img/xxhdpi/icon_#{$item}.png") no-repeat;
+        }
+        @media (min-width: $retina) and (max-width: $xhdpi) {
+            background: url("../img/xhdpi/icon_#{$item}.png") no-repeat;
+        }
+        @media (min-width: $hdpi) and (max-width: $retina) {
+            background: url("../img/retina/icon_#{$item}.png") no-repeat;
+        }
+        @media (min-width: $mdpi) and (max-width: $hdpi) {
+            background: url("../img/hdpi/icon_#{$item}.png") no-repeat;
+        }
+        @media (max-width: $mdpi) {
+            background: url("../img/mdpi/icon_#{$item}.png") no-repeat;
+        }
+    }
+}
+
+.main-menu-container {
+    position:absolute;
+    z-index: 100;
+    top: 1.85em;
+    left: -11em;
+    height: 22.1em;
+    overflow:hidden;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/m_paper.png) no-repeat;
+    }
+    @media (min-width: $retina) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/m_paper.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/m_paper.png) no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/m_paper.png) no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/m_paper.png) no-repeat;
+    }
+}
+
+.mainMenuVisible {
+    left: 0;
+}
+
+.main-menu-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 88%;
+    @media (min-width: $xhdpi) {
+        background: url(../img/xxhdpi/m_logo.png) center bottom no-repeat;
+    }
+    @media (min-width: $retina) and (max-width: $xhdpi) {
+        background: url(../img/xhdpi/m_logo.png) center bottom no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/m_logo.png) center bottom no-repeat;
+    }
+    @media (min-width: $mdpi) and (max-width: $hdpi) {
+        background: url(../img/hdpi/m_logo.png) center bottom no-repeat;
+    }
+    @media (max-width: $mdpi) {
+        background: url(../img/mdpi/m_logo.png) center bottom no-repeat;
+    }
+    li {
+        margin: 0;
+        padding: 0;
+        a {
+            @include box-sizing;
+            display: block;
+            font-size: 0.8em;
+            line-height: 2.9em;
+            border-bottom: solid 1px #ddd;
+            padding: 0 1em 0 3em;
+            background-position: 0.9em center;
+            background-repeat: no-repeat;
+        }
+
+        @each $item in $menu-collection {
+            .menu-item-#{$item} {
+                @media (min-width: $xhdpi) {
+                    background-image: url("../img/xxhdpi/m_icon_#{$item}.png");
+                }
+                @media (min-width: $retina) and (max-width: $xhdpi) {
+                    background-image: url("../img/xhdpi/m_icon_#{$item}.png");
+                }
+                @media (min-width: $hdpi) and (max-width: $retina) {
+                    background-image: url("../img/retina/m_icon_#{$item}.png");
+                }
+                @media (min-width: $mdpi) and (max-width: $hdpi) {
+                    background-image: url("../img/hdpi/m_icon_#{$item}.png");
+                }
+                @media (max-width: $mdpi) {
+                    background-image: url("../img/mdpi/m_icon_#{$item}.png");
+                }
+            }
+        }
+
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    display: none;
+}
+.overlay-transparent {
+    background-color: rgba(0,0,0,0.5);
+}
+.show-overlay {
+    display: block;
 }
 
 
@@ -249,284 +443,6 @@ a {
     
 
 
-/** HEADER AND MAIN MENU */
-
-header {
-    position: relative;
-    overflow: hidden;
-    z-index: 101;
-    @media (min-width: $xhdpi) {
-        background: url(../img/xxhdpi/header.png) no-repeat;
-        height: 160px;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        background: url(../img/xhdpi/header.png) no-repeat;
-        height: 107px;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/hdpi/header.png) no-repeat;
-        height: 81px;
-    }
-    @media (max-width: $mdpi) {
-        background: url(../img/mdpi/header.png) no-repeat;
-        height: 54px;
-    }
-}
-
-.header-title {
-    margin: auto;
-    margin-top: 0.5em;
-    /*    width: 12.5em;
-        height: 1.4em*/
-    @media (min-width: $xhdpi) {
-        width: 500px;
-        height: 56px;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        width: 334px;
-        height: 38px;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        width: 251px;
-        height: 29px;
-    }
-    @media (max-width: $mdpi) {
-        width: 168px;
-        height: 20px;
-    }
-}
-
-.header-title-home {
-    @media (min-width: $xhdpi) {
-        background: url(../img/xxhdpi/title_transfer.png) no-repeat;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        background: url(../img/xhdpi/title_transfer.png) no-repeat;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/hdpi/title_transfer.png) no-repeat;
-    }
-    @media (max-width: $mdpi) {
-        background: url(../img/mdpi/title_transfer.png) no-repeat;
-    }
-}
-
-.header-title-cards {
-    @media (min-width: $xhdpi) {
-        background: url(../img/xxhdpi/title_my.png) no-repeat;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        background: url(../img/xhdpi/title_my.png) no-repeat;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/hdpi/title_my.png) no-repeat;
-    }
-    @media (max-width: $mdpi) {
-        background: url(../img/mdpi/title_my.png) no-repeat;
-    }
-}
-
-.header-title-edit {
-    @media (min-width: $xhdpi) {
-        background: url(../img/xxhdpi/title_edit.png) no-repeat;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        background: url(../img/xhdpi/title_edit.png) no-repeat;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/hdpi/title_edit.png) no-repeat;
-    }
-    @media (max-width: $mdpi) {
-        background: url(../img/mdpi/title_edit.png) no-repeat;
-    }
-}
-
-.header-title-card {
-    @media (min-width: $xhdpi) {
-        background: url(../img/xxhdpi/title_my.png) no-repeat;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        background: url(../img/xhdpi/title_my.png) no-repeat;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/hdpi/title_my.png) no-repeat;
-    }
-    @media (max-width: $mdpi) {
-        background: url(../img/mdpi/title_my.png) no-repeat;
-    }
-}
-
-.header-title-signup {
-    @media (min-width: $xhdpi) {
-        background: url(../img/xxhdpi/title_account.png) no-repeat;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        background: url(../img/xhdpi/title_account.png) no-repeat;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/hdpi/title_account.png) no-repeat;
-    }
-    @media (max-width: $mdpi) {
-        background: url(../img/mdpi/title_account.png) no-repeat;
-    }
-}
-
-.header-title-create {
-    @media (min-width: $xhdpi) {
-        background: url(../img/xxhdpi/title_create.png) no-repeat;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        background: url(../img/xhdpi/title_create.png) no-repeat;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/hdpi/title_create.png) no-repeat;
-    }
-    @media (max-width: $mdpi) {
-        background: url(../img/mdpi/title_create.png) no-repeat;
-    }
-}
-
-.header-title-forgot-password {
-    @media (min-width: $xhdpi) {
-        background: url(../img/xxhdpi/title_password.png) no-repeat;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        background: url(../img/xhdpi/title_password.png) no-repeat;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/hdpi/title_password.png) no-repeat;
-    }
-    @media (max-width: $mdpi) {
-        background: url(../img/mdpi/title_password.png) no-repeat;
-    }
-}
-
-.icon {
-    display: block;
-    position: absolute;
-    top: 0.34em;
-    left: 0.34em;
-    width: 1em;
-    height: 1em;
-}
-
-.icon-right {
-    left: auto;
-    right: 0.34em;
-}
-
-@each $item in $icon-collection {
-    .icon-#{$item} {
-        @media (min-width: $xhdpi) {
-            background: url("../img/xxhdpi/icon_#{$item}.png") no-repeat;
-        }
-        @media (min-width: $hdpi) and (max-width: $xhdpi) {
-            background: url("../img/xhdpi/icon_#{$item}.png") no-repeat;
-        }
-        @media (min-width: $mdpi) and (max-width: $hdpi) {
-            background: url("../img/hdpi/icon_#{$item}.png") no-repeat;
-        }
-        @media (max-width: $mdpi) {
-            background: url("../img/mdpi/icon_#{$item}.png") no-repeat;
-        }
-    }
-}
-
-.main-menu-container {
-    position:absolute;
-    z-index: 100;
-    top: 1.85em;
-    left: -11em;
-    height: 22.1em;
-    overflow:hidden;
-    -webkit-transition: all 0.2s;
-    transition: all 0.2s;
-    @media (min-width: $xhdpi) {
-        background: url(../img/xxhdpi/m_paper.png) no-repeat;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        background: url(../img/xhdpi/m_paper.png) no-repeat;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/hdpi/m_paper.png) no-repeat;
-    }
-    @media (max-width: $mdpi) {
-        background: url(../img/mdpi/m_paper.png) no-repeat;
-    }
-}
-
-.mainMenuVisible {
-    left: 0;
-}
-
-.main-menu-container ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    height: 88%;
-    @media (min-width: $xhdpi) {
-        background: url(../img/xxhdpi/m_logo.png) center bottom no-repeat;
-    }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
-        background: url(../img/xhdpi/m_logo.png) center bottom no-repeat;
-    }
-    @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/hdpi/m_logo.png) center bottom no-repeat;
-    }
-    @media (max-width: $mdpi) {
-        background: url(../img/mdpi/m_logo.png) center bottom no-repeat;
-    }
-    li {
-        margin: 0;
-        padding: 0;
-        a {
-            @include box-sizing;
-            display: block;
-            font-size: 0.8em;
-            line-height: 2.9em;
-            border-bottom: solid 1px #ddd;
-            padding: 0 1em 0 3em;
-            background-position: 0.9em center;
-            background-repeat: no-repeat;
-        }
-
-        @each $item in $menu-collection {
-            .menu-item-#{$item} {
-                @media (min-width: $xhdpi) {
-                    background-image: url("../img/xxhdpi/m_icon_#{$item}.png");
-                }
-                @media (min-width: $hdpi) and (max-width: $xhdpi) {
-                    background-image: url("../img/xhdpi/m_icon_#{$item}.png");
-                }
-                @media (min-width: $mdpi) and (max-width: $hdpi) {
-                    background-image: url("../img/hdpi/m_icon_#{$item}.png");
-                }
-                @media (max-width: $mdpi) {
-                    background-image: url("../img/mdpi/m_icon_#{$item}.png");
-                }
-            }
-        }
-
-    }
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 99;
-    display: none;
-}
-.overlay-transparent {
-    background-color: rgba(0,0,0,0.5);
-}
-.show-overlay {
-    display: block;
-}
-
-
 
 /** MAIN CONTENT */
 
@@ -536,49 +452,43 @@ header {
 
 .home-create-bc {
     margin-top: 1.1em;
+    height: 8.6875em;
+    width: 100%;
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/tm_card.png) no-repeat;
-        width: $xxhdpi;
-        height: 695px;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         background: url(../img/xhdpi/tm_card.png) no-repeat;
-        width: $xhdpi;
-        height: 522px;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/tm_card.png) no-repeat;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
         background: url(../img/hdpi/tm_card.png) no-repeat;
-        width: $hdpi;
-        height: 391px;
     }
     @media (max-width: $mdpi) {
         background: url(../img/mdpi/tm_card.png) no-repeat;
-        width: $mdpi;
-        height: 260px;
     }
 }
 
 .home-my-bc {
     margin-top: 0.6em;
+    width: 100%;
+    height: 8.6875em;
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/my_card.png) no-repeat;
-        width: $xxhdpi;
-        height: 695px;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         background: url(../img/xhdpi/my_card.png) no-repeat;
-        width: $xhdpi;
-        height: 522px;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/my_card.png) no-repeat;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
         background: url(../img/hdpi/my_card.png) no-repeat;
-        width: $hdpi;
-        height: 391px;
     }
     @media (max-width: $mdpi) {
         background: url(../img/mdpi/my_card.png) no-repeat;
-        width: $mdpi;
-        height: 260px;
     }
 }
 
@@ -595,29 +505,28 @@ header {
         list-style: none;
         margin-bottom: 1em;
         text-align: center;
-
         &:after {
             content: '';
-            @media (min-width: $xhdpi) {
-                background: url(../img/xxhdpi/pocket.png) no-repeat;
-                width: $xxhdpi;
-            }
-            @media (min-width: $hdpi) and (max-width: $xhdpi) {
-                background: url(../img/xhdpi/pocket.png) no-repeat;
-                width: $xhdpi;
-            }
-            @media (min-width: $mdpi) and (max-width: $hdpi) {
-                background: url(../img/hdpi/pocket.png) no-repeat;
-                width: $hdpi;
-            }
-            @media (max-width: $mdpi) {
-                background: url(../img/mdpi/pocket.png) no-repeat;
-                width: $mdpi;
-            }
+            width: 100%;
             height: 3.0375em;
             position: absolute;
             bottom: -2.64em;
             left: 0;
+            @media (min-width: $xhdpi) {
+                background: url(../img/xxhdpi/pocket.png) no-repeat;
+            }
+            @media (min-width: $retina) and (max-width: $xhdpi) {
+                background: url(../img/xhdpi/pocket.png) no-repeat;
+            }
+            @media (min-width: $hdpi) and (max-width: $retina) {
+                background: url(../img/retina/pocket.png) no-repeat;
+            }
+            @media (min-width: $mdpi) and (max-width: $hdpi) {
+                background: url(../img/hdpi/pocket.png) no-repeat;
+            }
+            @media (max-width: $mdpi) {
+                background: url(../img/mdpi/pocket.png) no-repeat;
+            }
         }
     }
 }
@@ -631,8 +540,11 @@ header {
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/paper_empty.png) no-repeat;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         background: url(../img/xhdpi/paper_empty.png) no-repeat;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/paper_empty.png) no-repeat;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
         background: url(../img/hdpi/paper_empty.png) no-repeat;
@@ -687,8 +599,11 @@ header {
         @media (min-width: $xhdpi) {
             background: url("../img/xxhdpi/card#{$i}.png") no-repeat;
         }
-        @media (min-width: $hdpi) and (max-width: $xhdpi) {
+        @media (min-width: $retina) and (max-width: $xhdpi) {
             background: url("../img/xhdpi/card#{$i}.png") no-repeat;
+        }
+        @media (min-width: $hdpi) and (max-width: $retina) {
+            background: url("../img/retina/card#{$i}.png") no-repeat;
         }
         @media (min-width: $mdpi) and (max-width: $hdpi) {
             background: url("../img/hdpi/card#{$i}.png") no-repeat;
@@ -710,21 +625,21 @@ header {
 
 .add-edit-card-holder {
     height: 22.0125em;
+    width: 100%;
     @media (min-width: $xhdpi) {
         background: url("../img/xxhdpi/pocket_paper_edit.png") no-repeat;
-        width: $xxhdpi;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         background: url("../img/xhdpi/pocket_paper_edit.png") no-repeat;
-        width: $xhdpi;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url("../img/retina/pocket_paper_edit.png") no-repeat;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
         background: url("../img/hdpi/pocket_paper_edit.png") no-repeat;
-        width: $hdpi;
     }
     @media (max-width: $mdpi) {
         background: url("../img/mdpi/pocket_paper_edit.png") no-repeat;
-        width: $mdpi;
     }
 }
 .add-edit-card-form {
@@ -742,21 +657,21 @@ header {
 .share-card-holder {
     @include box-sizing;
     height: 14em;
+    width: 100%;
     @media (min-width: $xhdpi) {
         background: url("../img/xxhdpi/pocket_paper_preview.png") no-repeat;
-        width: $xxhdpi;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         background: url("../img/xhdpi/pocket_paper_preview.png") no-repeat;
-        width: $xhdpi;
+    }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url("../img/retina/pocket_paper_preview.png") no-repeat;
     }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
         background: url("../img/hdpi/pocket_paper_preview.png") no-repeat;
-        width: $hdpi;
     }
     @media (max-width: $mdpi) {
         background: url("../img/mdpi/pocket_paper_preview.png") no-repeat;
-        width: $mdpi;
     }
 }
 .qr-code {
@@ -770,11 +685,14 @@ header {
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/separator_send.png) no-repeat center;
     }
-    @media (min-width: $hdpi) and (max-width: $xhdpi) {
+    @media (min-width: $retina) and (max-width: $xhdpi) {
         background: url(../img/xhdpi/separator_send.png) no-repeat center;
     }
+    @media (min-width: $hdpi) and (max-width: $retina) {
+        background: url(../img/retina/separator_send.png) no-repeat center;
+    }
     @media (min-width: $mdpi) and (max-width: $hdpi) {
-        background: url(../img/xhdpi/separator_send.png) no-repeat center;
+        background: url(../img/hdpi/separator_send.png) no-repeat center;
     }
     @media (max-width: $mdpi) {
         background: url(../img/mdpi/separator_send.png) no-repeat center;
