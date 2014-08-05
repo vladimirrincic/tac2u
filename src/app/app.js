@@ -38,18 +38,23 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngTouch', 'LocalStorageModule', 
                 .when('/cards', {
                     templateUrl: 'card/card-list.tpl.html',
                     controller: 'CardListController',
+                    resolve: {
+                        timestampObject: function(timestampService) {
+                            return timestampService.getTimestamp().$promise;
+                        }
+                    },
                     access: {
                         requireLogin: true
                     }
                 })
-                .when('/cards/:cardId', {
+                .when('/cards/:id', {
                     templateUrl: 'card/card-details.tpl.html',
                     controller: 'CardDetailsController',
                     access: {
                         requireLogin: true
                     }
                 })
-                .when('/edit/:cardId', {
+                .when('/edit/:id', {
                     templateUrl: 'card/card-edit.tpl.html',
                     controller: 'CardEditController',
                     access: {
@@ -82,16 +87,28 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngTouch', 'LocalStorageModule', 
 
 .run(['$rootScope', '$location', 'authenticationService', 'messageService', 'options', function($rootScope, $location, authenticationService, messageService, options) {
         $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
-            if (nextRoute.access.requireLogin && !authenticationService.isLogged) {
-                $location.path('/');
-                messageService.addMessage(options.loginNeededMessage);
-            } else if(authenticationService.isLogged && nextRoute.originalPath === "/login") {
+            
+            // Check if user is logged in and redirect
+            if(authenticationService.isLogged && nextRoute.originalPath === "/login") {
                 $location.path('/home');
+            } else if (!authenticationService.isLogged && nextRoute.originalPath === "/login") {
+                $rootScope.isLoginView = true;
             }
+            if (nextRoute.originalPath !== "/login") {
+                $rootScope.isLoginView = false;
+            }
+            
+            // Check whether to clear action message or to keep it
+            if ($rootScope.actionMessage && !$rootScope.actionMessage.keepMessage) {
+                messageService.clearMessages();
+            } else if ($rootScope.actionMessage) {
+                $rootScope.actionMessage.keepMessage = false;
+            }
+            
         });
 }])
 
-.controller('AppController', ['$scope','$window', '$location', 'authenticationService', 'options', function($scope, $window, $location, authenticationService, options) {
+.controller('AppController', ['$scope','$window', '$location', 'authenticationService', 'userService', 'options', function($scope, $window, $location, authenticationService, userService, options) {
         
         $scope.appInfo = {
             name: options.name
@@ -100,7 +117,7 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngTouch', 'LocalStorageModule', 
         $scope.mainMenu = [
             {
                 url: '#/home',
-                name: 'Vladimir Rincic',
+                name: userService.userDetails().fullName,
                 class: 'menu-item-user'
             },
             {

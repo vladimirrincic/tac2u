@@ -7,19 +7,19 @@
 
     <form class="form signup-form">
         <div class="input-holder signup-input-holder">
-            <input type="text" class="form-control" id="inputFirstname" placeholder="FIRST NAME" ng-model="signup.firstname">
+            <input type="text" class="form-control" id="inputFirstname" placeholder="FIRST AND LAST NAME" ng-model="signupObject.fullName">
+        </div>
+<!--        <div class="input-holder signup-input-holder">
+            <input type="text" class="form-control" id="inputLastname" placeholder="LAST NAME" ng-model="signupObject.lastName">
+        </div>-->
+        <div class="input-holder signup-input-holder">
+            <input type="email" class="form-control" id="inputEmail" placeholder="EMAIL" ng-model="signupObject.email">
         </div>
         <div class="input-holder signup-input-holder">
-            <input type="text" class="form-control" id="inputLastname" placeholder="LAST NAME" ng-model="signup.lastname">
-        </div>
-        <div class="input-holder signup-input-holder">
-            <input type="email" class="form-control" id="inputEmail" placeholder="EMAIL" ng-model="signup.email">
-        </div>
-        <div class="input-holder signup-input-holder">
-            <input type="password" class="form-control" id="inputPassword" placeholder="PASSWORD" ng-model="signup.password">
+            <input type="password" class="form-control" id="inputPassword" placeholder="PASSWORD" ng-model="signupObject.password">
         </div>
         <div class="input-holder signup-submit-holder">
-            <a type="submit" class="btn btn-full-width" ng-click="signUp(signup)">Sign up</a>
+            <a type="submit" class="btn btn-full-width" ng-click="signUp(signupObject)">Sign up</a>
         </div>
         <div class="signup-note">
             By tapping "Sign up" above, you are agreeing to 

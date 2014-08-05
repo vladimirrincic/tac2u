@@ -4,7 +4,7 @@
     <head>
         <title>TAC2U</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
         <link href="css/general.css" rel="stylesheet">
         <script src="angular.js"></script>
         <script src="templates/app.js"></script>
@@ -12,6 +12,14 @@
         <script src="thirdparty.js"></script>
     </head>
     <body ng-controller="AppController">
+        
+        <!-- ACTION MESSAGE HOLDER -->
+        <div ng-if="!isLoginView" class="action-message" ng-class="{'action-message-success': actionMessage.messageType == 'success', 'action-message-error': actionMessage.messageType == 'error'}">
+            {{actionMessage.message}}
+        </div>
+        <div ng-if="isLoginView" class="action-message" ng-class="{'action-message-success-login': actionMessage.messageType == 'success', 'action-message-error-login': actionMessage.messageType == 'error'}">
+            {{actionMessage.message}}
+        </div>
 
         <!-- MAIN MENU -->
         <div class="overlay transparent-overlay" ng-class="{'show-overlay':showmenu}" ng-swipe-left="showmenu=false" ng-click="toggleMenu()"></div>

@@ -10,11 +10,15 @@
             {{cardDetails.occupation}}
         </div>
         <div class="contact-details">
-            {{cardDetails.phone}} |
-            {{cardDetails.email}} |
-            {{cardDetails.website}} |
-            {{cardDetails.address1}} |
-            {{cardDetails.address2}}
+            {{cardDetails.mobile}} 
+            <span ng-if="cardDetails.mobile != null && cardDetails.mobile != ''">|</span>
+            {{cardDetails.email}} 
+            <span ng-if="cardDetails.email != null && cardDetails.email != ''">|</span>
+            {{cardDetails.webpage}} 
+            <span ng-if="cardDetails.webpage != null && cardDetails.webpage != ''">|</span>
+            {{cardDetails.address}} 
+            <span ng-if="cardDetails.address != null && cardDetails.address != ''">|</span>
+            {{cardDetails.skype}}
         </div>
     </div>
 </div>

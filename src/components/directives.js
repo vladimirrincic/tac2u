@@ -1,5 +1,6 @@
 angular.module('directives', [])
 
+// Directive for upload and resize image
 .directive('ngImage', function($q) {
     
     var URL = window.URL || window.webkitURL;
@@ -129,28 +130,42 @@ angular.module('directives', [])
     };
 })
 
-.directive('mySlideController', ['$swipe',
-    function($swipe) {
-        return {
-            restrict: 'EA',
-            link: function(scope, ele, attrs, ctrl) {
-                var startX, pointX;
-                $swipe.bind(ele, {
-                    'start': function(coords) {
-                        startX = coords.x;
-                        pointX = coords.y;
-                    },
-                    'move': function(coords) {
-                        var delta = coords.x - pointX;
-                        // ...
-                    },
-                    'end': function(coords) {
-                        // ...
-                    },
-                    'cancel': function(coords) {
-                        // ...
-                    }
-                });
-            }
-        };
-    }]);
+.directive('mySlideController', ['$swipe', function($swipe) {
+    return {
+        restrict: 'EA',
+        link: function(scope, ele, attrs, ctrl) {
+            var startX, pointX;
+            $swipe.bind(ele, {
+                'start': function(coords) {
+                    startX = coords.x;
+                    pointX = coords.y;
+                },
+                'move': function(coords) {
+                    var delta = coords.x - pointX;
+                    // ...
+                },
+                'end': function(coords) {
+                    // ...
+                },
+                'cancel': function(coords) {
+                    // ...
+                }
+            });
+        }
+    };
+}])
+
+// Confirm dialog directive
+.directive('ngConfirmClick', [ function(){
+    return {
+        link: function (scope, element, attr) {
+            var msg = attr.ngConfirmClick || "Are you sure?";
+            var clickAction = attr.confirmedClick;
+            element.bind('click',function (event) {
+                if (window.confirm(msg) ) {
+                    scope.$eval(clickAction);
+                }
+            });
+        }
+    };
+}]);

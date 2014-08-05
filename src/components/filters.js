@@ -4,7 +4,7 @@ angular.module('filters', [])
     return function(array, id) {
         var i, response = {};
         for (i = 0; i < array.length; i++) {
-            if (array[i].cardId == id) {
+            if (array[i].id == id) {
                 response.index = i;
                 response.element = array[i];
                 return response;

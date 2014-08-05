@@ -1,14 +1,19 @@
 angular.module('user', ['services.user'])
 
-.controller('UserLoginController', ['$scope', '$location', '$window', 'userService', 'authenticationService', function($scope, $location, $window, userService, authenticationService) {
+.controller('UserLoginController', ['$scope', '$location', '$window', 'userService', 'authenticationService', 'messageService', 'options', '$rootScope', 
+    function($scope, $location, $window, userService, authenticationService, messageService, options, $rootScope) {
         $scope.signIn = function(username, password) {
-            userService.signIn(username, password).get().$promise.then(function(response) {
+            userService.signIn(username, password).success(function(response) {
                 authenticationService.isLogged = true;
                 $window.sessionStorage.token = response.token;
+                $window.sessionStorage.setItem('user', JSON.stringify(response.user));
                 $location.path("/home");
-            }, function(status, data) {
-                console.log(status);
-                console.log(data);
+            }).error(function(data, status) {
+                if (status !== 401) {
+                    messageService.addActionMessage('error', options.DEFAULT_ERROR);
+                } else {
+                    messageService.addActionMessage('error', options.BAD_CREDENTIALS);
+                }
             });
         };
         $scope.liConnect = function() {
@@ -16,15 +21,20 @@ angular.module('user', ['services.user'])
         };
 }])
 
-.controller('UserSignUpController', ['$scope', 'userService', function($scope, userService) {
-        $scope.signUp = function(username, password) {
-            userService.signUp(username, password).post().$promise.then(function(response) {
-                console.log(response);
-            }, function(status, data) {
-                console.log(status);
-                console.log(data);
-            });
-        };
+.controller('UserSignUpController', ['$scope', '$location', 'userService', 'messageService', 'options', function($scope, $location, userService, messageService, options) {
+        
+    // Object with user signup details
+    $scope.signupObject = {};
+
+    // Sign up method
+    $scope.signUp = function(signupObject) {
+        userService.signUp(signupObject).success(function() {
+            $location.path("/login");
+            messageService.addActionMessage('success', options.SIGNUP_SUCCESS, true);
+        }).error(function(data, status) {
+            messageService.addActionMessage('error', options.DEFAULT_ERROR);
+        });
+    };
 }])
 
 .controller('UserForgotPassword', ['$scope', function($scope) {

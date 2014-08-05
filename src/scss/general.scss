@@ -11,7 +11,7 @@ body {
     margin: 0;
     padding: 0;
     color: $default-font-color;
-/*    overflow: hidden;*/ 
+    /*    overflow: hidden;*/ 
     @media (min-width: $xhdpi) {
         font-size: 5.001em;
         background: url(../img/xxhdpi/background.png) repeat-y;
@@ -104,6 +104,48 @@ a {
     @media (max-width: $mdpi) {
         background: url(../img/mdpi/pocket_paper.png) no-repeat;
     }
+}
+
+
+
+/** ACTION MESSAGES */
+
+.action-message {
+    @include box-sizing;
+    position: absolute;
+    top: -5em;
+    width: 100%;
+    font-size: 0.55em;
+    padding: 1.7em 0.7em;
+    color: #666;
+    z-index: 101;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    background: #f8f8f4;
+}
+.action-message-success {
+    top: 3.3em;
+    border-left: solid 0.3em green;
+}
+.action-message-error {
+    top: 3.3em;
+    border-left: solid 0.3em red;
+}
+.action-message-info {
+    border-left: solid 0.3em blue;
+    top: 3.3em;
+}
+.action-message-success-login {
+    top: 0;
+    border-left: solid 0.3em green;
+}
+.action-message-error-login {
+    top: 0;
+    border-left: solid 0.3em red;
+}
+.action-message-info-login {
+    border-left: solid 0.3em blue;
+    top: 0;
 }
 
 
@@ -440,7 +482,7 @@ header {
         padding: 1.7em 0;
     }
 }
-    
+
 
 
 
@@ -564,6 +606,33 @@ header {
     overflow: hidden;
 }
 
+.card-list-user {
+    position: relative;
+    .delete-card-btn {
+        position: absolute;
+        top: -0.452em;
+        right: 1em;
+        width: 1.2em;
+        height: 1em;
+        cursor: pointer;
+        @media (min-width: $xhdpi) {
+            background: url(../img/xxhdpi/2delete.png) no-repeat;
+        }
+        @media (min-width: $retina) and (max-width: $xhdpi) {
+            background: url(../img/xhdpi/2delete.png) no-repeat;
+        }
+        @media (min-width: $hdpi) and (max-width: $retina) {
+            background: url(../img/retina/2delete.png) no-repeat;
+        }
+        @media (min-width: $mdpi) and (max-width: $hdpi) {
+            background: url(../img/hdpi/2delete.png) no-repeat;
+        }
+        @media (max-width: $mdpi) {
+            background: url(../img/mdpi/2delete.png) no-repeat;
+        }
+    }
+}
+
 .card-layout {
     width: 12em;
     height: 6.62em;
@@ -581,16 +650,19 @@ header {
         text-transform: uppercase;
         font-weight: 500;
         font-size: 0.75em;
+        padding: 0 1.5em;
     }
     .occupation {
         font-size: 0.45em;
         line-height: 0.95em;
         margin-bottom: 1em;
         color: #289ba7;
+        padding: 0 1.5em;
     }
     .contact-details {
         font-size: 0.4em;
         line-height: 1.75em;
+        padding: 0 1.5em;
     }
 }
 

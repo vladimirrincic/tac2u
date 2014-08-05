@@ -4,11 +4,9 @@
 </header>
 
 <ul class="card-list">
-    <li ng-repeat="cardLayout in cardLayoutList">
-            <a ng-href="#/add/{{cardLayout.layoutId}}" class="card-layout-in-list">
-                <div class="card-edit-preview">
-                    <div class="card-layout card-layout-{{cardLayout.layoutId}}"></div>
-                </div>
+    <li ng-repeat="cardDetails in cardLayoutList">
+            <a ng-href="#/add/{{cardDetails.layoutId}}" class="card-layout-in-list">
+                <div ng-include="'card/layout/card-layout-' + cardDetails.layoutId + '.tpl.html'"></div>
             </a>
     </li>
 </ul>
