@@ -1,12 +1,16 @@
-<header>
-    <a href="#/home" class="icon icon-back"></a>
-    <div class="header-title header-title-create"></div>
-</header>
+<div class="background">
+    
+    <header>
+        <a ng-href="#/home" class="icon icon-back"></a>
+        <div class="header-title header-title-create"></div>
+    </header>
 
-<ul class="card-list">
-    <li ng-repeat="cardDetails in cardLayoutList">
-            <a ng-href="#/add/{{cardDetails.layoutId}}" class="card-layout-in-list">
-                <div ng-include="'card/layout/card-layout-' + cardDetails.layoutId + '.tpl.html'"></div>
-            </a>
-    </li>
-</ul>
+    <ul class="card-list">
+        <li ng-repeat="cardDetails in cardLayoutList">
+                <a ng-href="#/add/{{cardDetails.layoutId}}" class="card-layout-in-list">
+                    <div ng-include="'card/layout/card-layout-' + cardDetails.layoutId + '.tpl.html'"></div>
+                </a>
+        </li>
+    </ul>
+    
+</div>

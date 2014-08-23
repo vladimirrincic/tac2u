@@ -1,31 +1,17 @@
-angular.module('card', ['services.card', 'directives'])
+angular.module('card', ['services.card'])
 
-.controller('CardListController', ['$scope', 'localStorageService', 'cardServiceGetAll', 'cardDeleteService', 'cardService', 'timestampObject', 'messageService', 'options', '$route',
-    function($scope, localStorageService, cardServiceGetAll, cardDeleteService, cardService, timestampObject, messageService, options, $route) {
-        var serverTimestamp = timestampObject[0] && timestampObject[0].timestamp,
-            localTimestamp = localStorageService.get('timestamp');
+.controller('CardListController', ['$scope', 'cardDeleteService', 'cardService', 'messageService', 'options', '$route', 'resolvedCardList',
+    function($scope, cardDeleteService, cardService, messageService, options, $route, resolvedCardList) {
 
-        if (localTimestamp !== serverTimestamp || localTimestamp === serverTimestamp) {
-            cardServiceGetAll.getAll().$promise.then(function(response) {
-                localStorageService.clearAll();
-                localStorageService.set('cardList', response);
-                $scope.cardList = response;
-                $scope.cardListEmpty = false;
-                if ($scope.cardList.length === 0) {
-                    $scope.cardListEmpty = true;
-                }
-            });
-        } else {
-            $scope.cardList = localStorageService.get('cardList');
-            $scope.cardListEmpty = false;
-            if ($scope.cardList.length === 0) {
-                $scope.cardListEmpty = true;
-            } 
-        }
-        
+        $scope.cardList = resolvedCardList;
+        $scope.cardListEmpty = false;
+        if ($scope.cardList.length === 0) {
+            $scope.cardListEmpty = true;
+        } 
+
         $scope.deleteCard = function (cardId) {
-            cardDeleteService.deleteCard({ id:cardId }).$promise.then(function(response) {
-                cardService.deleteCardLocal(cardId, response.timestamp);
+            cardDeleteService.deleteCard({ id:cardId }).$promise.then(function() {
+                cardService.deleteCardLocal(cardId);
                 messageService.addActionMessage('success', options.CARD_DELETED, true);
                 $route.reload(); 
             }, function() {
@@ -34,7 +20,8 @@ angular.module('card', ['services.card', 'directives'])
         };
 }])
 
-.controller('CardDetailsController', ['$scope', '$routeParams', '$window', 'cardService', 'options', function($scope, $routeParams, $window, cardService, options) {
+.controller('CardDetailsController', ['$scope', '$window', 'options', 'resolvedCardObject', 'resolvedQR',
+    function($scope, $window, options, resolvedCardObject, resolvedQR) {
         var qrCodeSize = options.qrCodeSize, windowWidth = $window.innerWidth;
         
         if (windowWidth > 720) {
@@ -46,55 +33,105 @@ angular.module('card', ['services.card', 'directives'])
         } else if (windowWidth > 360) {
             qrCodeSize *= 1.5; // hdpi
         }
+
+        $scope.cardDetails = resolvedCardObject;
         
-        $scope.cardDetails = cardService.getCardById($routeParams.id);
         $scope.vCard = {
-            string: cardService.vCardGenerator($routeParams.id),
+            string: resolvedQR,
             size: qrCodeSize,
             version: options.qrCodeVersion,
             errorCorrection: options.errorCorrection
         };
-
+        
+        $scope.cardForShare = '';
+        for (var prop in $scope.cardDetails) {
+            if (
+                    $scope.cardDetails[prop] !== '' 
+                    && $scope.cardDetails[prop] !== null 
+                    && prop !== 'id' 
+                    && prop !== 'timestamp' 
+                    && prop !== 'layoutId' 
+                    && prop !== 'logo' 
+                    && prop !== 'logoUrl'
+                    && prop !== 'logoType'
+                ) {
+                $scope.cardForShare += options.cardLabels['label_' + prop] + ': ' + $scope.cardDetails[prop] + '\n';
+            }
+        }
+        
+        // THIS IS BAD, BUT CURRENTLY THIS IS THE ONLY WAY
+        if ($scope.cardDetails.logoUrl) {
+            document.getElementById('shareCard').onclick = function(){ window.plugins.socialsharing.share($scope.cardForShare, $scope.cardDetails.fullName, $scope.cardDetails.logoUrl, null); };
+        } else {
+            document.getElementById('shareCard').onclick = function(){ window.plugins.socialsharing.share($scope.cardForShare, $scope.cardDetails.fullName); };
+        }
 }])
 
-.controller('CardAddController', ['$scope', '$routeParams', '$location', 'cardService', 'cardServiceCreate', 'messageService', 'options', 
-    function($scope, $routeParams, $location, cardService, cardServiceCreate, messageService, options) {
+.controller('CardAddController', ['$scope', '$routeParams', '$location', 'cardService', 'cardServiceCreate', 'messageService', 'options', 'userService',
+    function($scope, $routeParams, $location, cardService, cardServiceCreate, messageService, options, userService) {
+        
+        var isLinkedinUser = userService.isLinkedinUser();
+        
+        $scope.cardLabels = {};
+        for (var prop in options.cardLabels)  {
+            $scope.cardLabels[prop] = options.cardLabels[prop];
+        }
         
         $scope.cardDetails = {
             layoutId: $routeParams.layoutId
         };
+        
+        if (isLinkedinUser) {
+            userService.getLinkedinUserDetails().then(function (response) {
+                $scope.cardDetails.fullName = response.data.firstName + ' ' + response.data.lastName;
+                if (response.data.emailAddress) $scope.cardDetails.email = response.data.emailAddress;
+                if (response.data.mainAddress) $scope.cardDetails.addressLine1 = response.data.mainAddress;
+                if (response.data.phoneNumbers.values[0].phoneNumber) $scope.cardDetails.phone = response.data.phoneNumbers.values[0].phoneNumber;
+            });
+        }
 
         $scope.$watch('ngImage', function(newValue) {
             if (newValue) {
+                $scope.cardDetails.logoType = 'png';
                 $scope.cardDetails.logo = newValue.resized.dataURL;
             }
         });
 
         $scope.saveCard = function() {
-            cardServiceCreate.create($scope.cardDetails).$promise.then(function(response) {
-                cardService.saveCardLocal($scope.cardDetails, response.timestamp);
+            var cardDetailForSave = cardService.cardDetailForSave($scope.cardDetails);
+            
+            cardServiceCreate.create(cardDetailForSave).$promise.then(function(response) {
+                cardService.saveCardLocal(cardDetailForSave, response);
                 messageService.addActionMessage('success', options.CARD_ADDED, true);
                 $location.path("/cards");            
             });
         };
 }])
 
-.controller('CardEditController', ['$scope', '$routeParams', '$location', 'cardService', 'cardServiceCreate', 'messageService', 'options', 
-    function($scope, $routeParams, $location, cardService, cardServiceCreate, messageService, options) {
+.controller('CardEditController', ['$scope', '$routeParams', '$location', 'cardService', 'cardServiceCreate', 'messageService', 'options', 'resolveCardObject', 
+    function($scope, $routeParams, $location, cardService, cardServiceCreate, messageService, options, resolveCardObject) {
         
-        $scope.cardDetails = cardService.getCardById($routeParams.id);
+        $scope.cardLabels = {};
+        for (var prop in options.cardLabels)  {
+            $scope.cardLabels[prop] = options.cardLabels[prop];
+        }
+        
+        $scope.cardDetails = resolveCardObject;
 
         $scope.$watch('ngImage', function(newValue) {
             if(newValue) {
+                $scope.cardDetails.logoType = 'png';
                 $scope.cardDetails.logo = newValue.resized.dataURL;
             }
         });
 
         $scope.saveCard = function() {
-            cardServiceCreate.create($scope.cardDetails).$promise.then(function(response) {
-                cardService.saveCardLocal($scope.cardDetails, response.timestamp);
-                messageService.addActionMessage('success', options.CARD_EDITED, true);
-                $location.path("/cards/" + $routeParams.id);
+            var cardDetailForSave = cardService.cardDetailForSave($scope.cardDetails);
+            
+            cardServiceCreate.create(cardDetailForSave).$promise.then(function(response) {
+                cardService.saveCardLocal(cardDetailForSave, response);
+                messageService.addActionMessage('success', options.CARD_ADDED, true);
+                $location.path("/cards");            
             });
         };
 }])

@@ -1,29 +1,33 @@
-<header>
-    <a href="#/login" class="icon icon-back"></a>
-    <div class="header-title header-title-account"></div>
-</header>
+<div class="background">
+    
+    <header>
+        <a ng-href="#/login" class="icon icon-back"></a>
+        <div class="header-title header-title-account"></div>
+    </header>
 
-<div class="paper-pocket paper-pocket-signup">
+    <div class="paper-pocket paper-pocket-signup">
 
-    <form class="form signup-form">
-        <div class="input-holder signup-input-holder">
-            <input type="text" class="form-control" id="inputFirstname" placeholder="FIRST AND LAST NAME" ng-model="signupObject.fullName">
-        </div>
-<!--        <div class="input-holder signup-input-holder">
-            <input type="text" class="form-control" id="inputLastname" placeholder="LAST NAME" ng-model="signupObject.lastName">
-        </div>-->
-        <div class="input-holder signup-input-holder">
-            <input type="email" class="form-control" id="inputEmail" placeholder="EMAIL" ng-model="signupObject.email">
-        </div>
-        <div class="input-holder signup-input-holder">
-            <input type="password" class="form-control" id="inputPassword" placeholder="PASSWORD" ng-model="signupObject.password">
-        </div>
-        <div class="input-holder signup-submit-holder">
-            <a type="submit" class="btn btn-full-width" ng-click="signUp(signupObject)">Sign up</a>
-        </div>
-        <div class="signup-note">
-            By tapping "Sign up" above, you are agreeing to 
-            <a href="">Terms of services</a> and <a href="">Privacy Policy</a>.
-         </div>
-    </form>
+        <form class="form signup-form">
+            <div class="input-holder signup-input-holder">
+                <input type="text" class="form-control" id="inputFirstname" placeholder="FIRST AND LAST NAME" ng-model="signupObject.fullName">
+            </div>
+            <!--        <div class="input-holder signup-input-holder">
+                        <input type="text" class="form-control" id="inputLastname" placeholder="LAST NAME" ng-model="signupObject.lastName">
+                    </div>-->
+            <div class="input-holder signup-input-holder">
+                <input type="email" class="form-control" id="inputEmail" placeholder="EMAIL" ng-model="signupObject.email">
+            </div>
+            <div class="input-holder signup-input-holder">
+                <input type="password" class="form-control" id="inputPassword" placeholder="PASSWORD" ng-model="signupObject.password">
+            </div>
+            <div class="input-holder signup-submit-holder">
+                <a type="submit" class="btn btn-full-width" ng-click="signUp(signupObject)">Sign up</a>
+            </div>
+            <div class="signup-note">
+                By tapping "Sign up" above, you are agreeing to 
+                <a href="">Terms of services</a> and <a href="">Privacy Policy</a>.
+            </div>
+        </form>
+    </div>
+    
 </div>

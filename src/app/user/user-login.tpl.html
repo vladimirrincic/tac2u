@@ -1,26 +1,30 @@
-<div class="logo-holder"></div>
-
-<div class="paper-pocket paper-pocket-login">
-
-    <a ng-href="loginWithLinkedIn" ng-click="liConnect()" class="connect-ln">
-        <div class="connect-ln-text">Connect with LinkedIn</div>
-    </a>
+<div class="background">
     
-    <div class="separator-holder">OR</div>
+    <div class="logo-holder"></div>
 
-    <form class="form login-form">
-        <div class="input-holder login-input-holder">
-            <input type="text" class="form-control" id="inputUsername" placeholder="USERNAME" ng-model="login.email">
+    <div class="paper-pocket paper-pocket-login">
+
+        <div ng-click="liConnect()" class="connect-ln">
+            <div class="connect-ln-text">Connect with LinkedIn</div>
         </div>
-        <div class="input-holder login-input-holder">
-            <input type="password" class="form-control" id="inputPassword" placeholder="PASSWORD" ng-model="login.password">
-        </div>
-        <div class="input-holder login-submit-holder">
-            <a href="#/signup" class="btn btn-default">Sign up</a>
-            <a type="submit" class="btn btn-default" ng-click="signIn(login.email, login.password)">Login</a>
-        </div>
-        <div class="forgot-pass-link">
-            <a ng-href="#/forgot-password">Forgot your password?</a>
-        </div>
-    </form>
+
+        <div class="separator-holder">OR</div>
+
+        <form novalidate class="form login-form" ng-submit="signIn(login.email, login.password)">
+            <div class="input-holder login-input-holder">
+                <input type="email" class="form-control" id="inputUsername" placeholder="USERNAME" ng-model="login.email" requred>
+            </div>
+            <div class="input-holder login-input-holder">
+                <input type="password" class="form-control" id="inputPassword" placeholder="PASSWORD" ng-model="login.password" required>
+            </div>
+            <div class="input-holder login-submit-holder">
+                <a href="#/signup" class="btn btn-default">Sign up</a>
+                <button type="submit" class="btn btn-default">Login</button>
+            </div>
+            <div class="forgot-pass-link">
+    <!--            <a ng-href="#/forgot-password">Forgot your password?</a>-->
+            </div>
+        </form>
+    </div>
+    
 </div>

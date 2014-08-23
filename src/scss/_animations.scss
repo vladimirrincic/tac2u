@@ -1,26 +1,30 @@
-/*.ng-enter, .ng-leave {
-    -webkit-transition:all 0.2s;
-    transition:all 0.2s;
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+.pop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
-
-.ng-enter {
-    z-index: 8888;
+.pop.ng-enter,
+.pop.ng-leave {
+    @include transition;
 }
-.ng-leave {
-    z-index: 9999;
+.pop.ng-enter {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
 }
-
-.ng-enter {
-    left:100%;
+.pop.ng-enter-active,
+.pop.ng-leave,
+.pop.ng-leave-active {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
 }
-.ng-enter.ng-enter-active {
-    left:0;
+.pop.ng-leave-active {
+    display: none;
 }
-.ng-leave.ng-leave-active {
-    left:-100%;
-}*/

@@ -11,7 +11,8 @@ body {
     margin: 0;
     padding: 0;
     color: $default-font-color;
-    /*    overflow: hidden;*/ 
+    /*    -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-overflow-scrolling: touch;*/
     @media (min-width: $xhdpi) {
         font-size: 5.001em;
         background: url(../img/xxhdpi/background.png) repeat-y;
@@ -35,6 +36,7 @@ body {
 }
 
 a {
+    outline: none;
     color: $default-font-color;
     text-decoration: none;
 }
@@ -55,7 +57,26 @@ a {
         font-family: 'Roboto';
         font-weight: 300;
         font-size: 0.65em;
+        outline: none;
         color: $default-font-color;
+    }
+    .edit-input-image-holder {
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        height: 1.8em;
+        input {
+            font-size: 1.3em;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: pointer;
+        }
     }
 }
 
@@ -70,6 +91,10 @@ a {
     background: #f8f8f4;
     padding: 0.6em 1em;
     text-transform: uppercase;
+    margin: 0;
+    vertical-align: top;
+    line-height: 1.35em;
+    outline: none;
 }
 
 .btn-full-width {
@@ -81,13 +106,14 @@ a {
 }
 
 .main-content {
+    @include box-sizing;
     padding-top: 2em;
 }
 
 .paper-pocket {
     width: 100%;
     overflow:hidden;
-    margin-top: 4em;
+    margin-top: 3em;
     height: 17.4em;
     @media (min-width: $xhdpi) {
         background: url(../img/xxhdpi/pocket_paper.png) no-repeat;
@@ -106,13 +132,33 @@ a {
     }
 }
 
+.loading-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 10000;
+    .loading-text {
+        text-align: center;
+        font-size: 0.8em;
+        line-height: 4em;
+        position: absolute;
+        top: 50%;
+        margin-top: -2em;
+        width: 100%;
+        background: #fff;
+        color: $default-font-color;
+    }
+}
+
 
 
 /** ACTION MESSAGES */
 
 .action-message {
     @include box-sizing;
-    position: absolute;
+    position: fixed;
     top: -5em;
     width: 100%;
     font-size: 0.55em;
@@ -157,7 +203,7 @@ a {
     margin-top: 0;
 }
 .logo-holder {
-    margin: 1.6em auto;
+    margin: 0 auto 1.6em;
     width: 6.925em;
     height: 3em;
     @media (min-width: $xhdpi) {
@@ -180,6 +226,7 @@ a {
 .connect-ln {
     @include box-sizing;
     display: block;
+    cursor: pointer;
     text-decoration: none;
     margin: 1.7em auto 1em;
     padding-left: 2.5em;
@@ -647,7 +694,7 @@ header {
         }
     }
     .full-name {
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         font-weight: 500;
         font-size: 0.75em;
         padding: 0 1.5em;
@@ -770,6 +817,6 @@ header {
         background: url(../img/mdpi/separator_send.png) no-repeat center;
     }
 }
-.form .share-email-input-holder {
-    margin-bottom: 0.4em;
+.share-email-submit-holder {
+    margin-top: 1em;
 }

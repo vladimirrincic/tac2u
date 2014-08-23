@@ -1,43 +1,49 @@
-<header ng-switch on="!!cardDetails.id">
-    <a href="#/cards/{{cardDetails.id}}" class="icon icon-back" ng-switch-when="true"></a>
-    <a href="#/cards" class="icon icon-back" ng-switch-default></a>
+<div class="background">
+    
+    <header ng-switch on="!!cardDetails.id">
+        <a ng-href="#/cards/{{cardDetails.id}}" class="icon icon-back" ng-switch-when="true"></a>
+        <a ng-href="#/cards" class="icon icon-back" ng-switch-default></a>
 
-    <a href="" ng-click="saveCard()" class="icon icon-right icon-save"></a>
-    <div class="header-title header-title-edit"></div>
-</header>
+        <a href="" ng-click="saveCard()" class="icon icon-right icon-save"></a>
+        <div class="header-title header-title-edit"></div>
+    </header>
 
-<div ng-include="'card/layout/card-layout-' + cardDetails.layoutId + '.tpl.html'"></div>
+    <div ng-include="'card/layout/card-layout-' + cardDetails.layoutId + '.tpl.html'"></div>
 
-<div class="add-edit-card-holder">
-     <form class="form add-edit-card-form">
-        <input type="hidden" ng-model="cardDetails.id">
+    <div class="add-edit-card-holder">
+         <form class="form add-edit-card-form">
+            <input type="hidden" ng-model="cardDetails.id">
 
-        <div class="input-holder edit-input-holder">
-            <input type="text" ng-model="cardDetails.fullName" placeholder="First and last name">
-        </div>
-        <div class="input-holder edit-input-holder">
-            <input type="text" ng-model="cardDetails.occupation" placeholder="Position">
-        </div>
-        <div class="input-holder edit-input-holder">
-            <input type="text" ng-model="cardDetails.mobile" placeholder="Phone number">
-        </div>
-        <div class="input-holder edit-input-holder">
-            <input type="email" ng-model="cardDetails.email" placeholder="Email address">
-        </div>
-        <div class="input-holder edit-input-holder">
-            <input type="text" ng-model="cardDetails.webpage" placeholder="Website">
-        </div>
-        <div class="input-holder edit-input-holder">
-            <input type="text" ng-model="cardDetails.address" placeholder="Address line 1">
-        </div>
-        <div class="input-holder edit-input-holder">
-            <input type="text" ng-model="cardDetails.skype" placeholder="Address line 2">
-        </div>
+            <div class="input-holder edit-input-holder">
+                <input type="text" ng-model="cardDetails.fullName" placeholder="{{cardLabels.label_fullName}}">
+            </div>
+            <div class="input-holder edit-input-holder">
+                <input type="text" ng-model="cardDetails.occupation" placeholder="{{cardLabels.label_occupation}}">
+            </div>
+            <div class="input-holder edit-input-holder">
+                <input type="text" ng-model="cardDetails.phone" placeholder="{{cardLabels.label_phone}}">
+            </div>
+            <div class="input-holder edit-input-holder">
+                <input type="email" ng-model="cardDetails.email" placeholder="{{cardLabels.label_email}}">
+            </div>
+            <div class="input-holder edit-input-holder">
+                <input type="text" ng-model="cardDetails.webpage" placeholder="{{cardLabels.label_webpage}}">
+            </div>
+            <div class="input-holder edit-input-holder">
+                <input type="text" ng-model="cardDetails.addressLine1" placeholder="{{cardLabels.label_addressLine1}}">
+            </div>
+            <div class="input-holder edit-input-holder">
+                <input type="text" ng-model="cardDetails.addressLine2" placeholder="{{cardLabels.label_addressLine2}}">
+            </div>
 
-        <div class="input-holder edit-input-holder">
-            <input type="file" ng-image="ngImage" resize-max-height="500" resize-max-width="500" resize-quality="0.7">
-        </div>
-    </form>
+            <div class="input-holder edit-input-holder edit-input-image-holder">
+                <div class="btn" style="margin: auto;">Add logo</div>
+                <input type="file" ng-image="ngImage" resize-max-height="500" resize-max-width="500" resize-quality="0.7">
+            </div>
+        </form>
+    </div>
+    
 </div>
+
 
 

@@ -63,8 +63,12 @@ module.exports = function(grunt) {
                 dest: '<%= distdir %>/angular.js'
             },
             thirdparty: {
-                src: ['vendor/QR/qrcode.js'],
+                src: ['vendor/QR/qrcode.js', 'vendor/xml2json/xml2json.js'],
                 dest: '<%= distdir %>/thirdparty.js'
+            },
+            jQuery: {
+                src: ['vendor/jQuery/jquery-1.11.1.min.js'],
+                dest: '<%= distdir %>/jquery.js'
             }
         },
         sass: {

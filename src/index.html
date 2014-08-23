@@ -3,16 +3,42 @@
 <html lang="en" ng-app="app">
     <head>
         <title>TAC2U</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
         <link href="css/general.css" rel="stylesheet">
+
+        <!-- Phonegap app scripts -->
+        <script src="cordova.js"></script>
+        <script type="text/javascript" src="js/SocialSharing.js"></script>
+
+        <!-- HTML5 app scripts -->
+        <script src="jquery.js"></script>
         <script src="angular.js"></script>
         <script src="templates/app.js"></script>
         <script src="tac2u.js"></script>
         <script src="thirdparty.js"></script>
+
+        <script type="text/javascript" charset="utf-8">
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+                navigator.splashscreen.show();
+                setTimeout(function() {
+                    navigator.splashscreen.hide();
+                }, 3000);
+            }
+        </script>
+
     </head>
     <body ng-controller="AppController">
-        
+
+        <!-- Loading animation -->
+        <div class="loading-animation" loading-animation>
+            <div class="loading-text">
+                Loading...
+            </div>
+        </div>
+
         <!-- ACTION MESSAGE HOLDER -->
         <div ng-if="!isLoginView" class="action-message" ng-class="{'action-message-success': actionMessage.messageType == 'success', 'action-message-error': actionMessage.messageType == 'error'}">
             {{actionMessage.message}}
@@ -22,11 +48,12 @@
         </div>
 
         <!-- MAIN MENU -->
-        <div class="overlay transparent-overlay" ng-class="{'show-overlay':showmenu}" ng-swipe-left="showmenu=false" ng-click="toggleMenu()"></div>
+        <!--<div class="overlay transparent-overlay" ng-class="{'show-overlay':showmenu}" ng-swipe-left="showmenu=false" ng-click="toggleMenu()"></div>-->
+        <div class="overlay transparent-overlay" ng-class="{'show-overlay':showmenu}" ng-click="toggleMenu()"></div>
         <div class="main-menu-container" ng-class="{mainMenuVisible:showmenu}">
             <ul>
                 <li ng-repeat="menuItem in mainMenu">
-                    <a ng-href="{{menuItem.url}}" class="{{menuItem.class}}" ng-click="toggleMenu()">{{menuItem.name}}</a>
+                    <a ng-href="{{menuItem.url}}" class="{{menuItem.class}}">{{menuItem.name}}</a>
                 </li>
                 <li>
                     <a ng-href="#" class="menu-item-off" ng-click="logout()">Logout</a>
@@ -35,7 +62,25 @@
         </div>
 
         <!-- MAIN VIEW -->
-        <div ng-view class="main-content"></div>
+        <div ng-view class="main-content pop"></div>
+
+        <!-- Phonegap -->
+        <script type="text/javascript">
+                    function handleOpenURL(url) {
+                        setTimeout(function() {
+                            var appElement = document.querySelector('#accessToken'),
+                                    $scope = angular.element(appElement).scope(),
+                                    start = url.indexOf('&token=') + 7,
+                                    end = url.indexOf('&state='),
+                                    at = url.substring(start, end);
+
+                            $scope.$apply(function() {
+                                $scope.liAccessToken = at;
+                            });
+                        }, 0);
+                    };
+        </script>
+        <input type="hidden" id="accessToken">
 
     </body>
 </html>

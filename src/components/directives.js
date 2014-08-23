@@ -24,7 +24,7 @@ angular.module('directives', [])
         var maxHeight = options.resizeMaxHeight || 300;
         var maxWidth = options.resizeMaxWidth || 250;
         var quality = options.resizeQuality || 0.7;
-        var type = options.resizeType || 'image/jpg';
+        var type = options.resizeType || 'image/png';
 
         var canvas = getResizeArea();
 
@@ -156,7 +156,7 @@ angular.module('directives', [])
 }])
 
 // Confirm dialog directive
-.directive('ngConfirmClick', [ function(){
+.directive('ngConfirmClick', [ function() {
     return {
         link: function (scope, element, attr) {
             var msg = attr.ngConfirmClick || "Are you sure?";
@@ -168,4 +168,25 @@ angular.module('directives', [])
             });
         }
     };
-}]);
+}])
+
+// Loadimg animation
+.directive('loadingAnimation', ['$http', '$timeout', function($http, $timeout) {
+        return {
+            restrict: 'A',
+            link: function(scope, elm, attrs) {
+                scope.isLoading = function() {
+                    return $http.pendingRequests.length > 0;
+                };
+
+                scope.$watch(scope.isLoading, function(v) {
+                    if (v) {
+                        $(elm).show();
+                    } else {
+                        $(elm).hide();
+                    }
+                });
+            }
+        };
+
+    }]);
